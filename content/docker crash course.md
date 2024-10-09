@@ -9,16 +9,16 @@ Key benefits of Docker include:
 - Easier application deployment and scaling
 - Improved resource utilization compared to traditional virtual machines
 
-In this post I will take you from intro to ready to use docker. You will know everything you need to get started and working with docker. We will be understanding core concepts to creating and running your own containerized applications.
+In this post, I will take you from the intro to ready-to-use docker. You will know everything you need to get started and work with docker. We will be understanding core concepts to creating and running your own containerized applications.
 ## Core Concepts: Images and Containers
 
 ### What is a Docker Image?
 
 A Docker image is a lightweight, standalone, and executable package that includes everything needed to run a piece of software. This includes the code, runtime, system tools, libraries, and settings. 
 
-Think of an image as a blueprint or a snapshot of your application at a specific point in time. Images are the actual application artifacts that you can move around and share with others.
+Think of an image as a blueprint or a snapshot of your application at a specific point in time. Images are the actual application artefacts that you can move around and share with others.
 
-These images depend on other images, and they are stacked in that way. For example a Node image might depend on linux distribution such as a version of alpine. When we pull another version of same image we will see that the other image on which these images depends will not be pulled because they may have been pulled already for some other versions and support the current version we are pulling.
+These images depend on other images, and they are stacked in that way. For example, a Node image might depend on Linux distribution such as a version of Alpine. When we pull another version of same image we will see that the other image on which these images depend will not be pulled because they may have been pulled already for some other versions and support the current version we are pulling.
 ### What is a Docker Container?
 
 A container is a runtime instance of the image. Containers are the environments in which the images run.
@@ -43,8 +43,8 @@ docker pull image-name:tag
 ```
 
 Replace `image-name` with the name of the image you want to pull, and `tag` with the specific version you need (if omitted, Docker will use the 'latest' tag).
-Docker will pull these images from publicly hosted docker registry and for that you will not need to log in. 
-If you want to pull image that is hosted in some private registry then you first need to log in and then run the above command.
+Docker will pull these images from a publicly hosted docker registry and for that, you will not need to log in. 
+If you want to pull an image that is hosted in some private registry then you first need to log in and then run the above command.
 ### Running an Image
 
 To run an image and create a new container:
@@ -67,7 +67,7 @@ Replace `container-id` with the ID of the stopped container.
 
 ### Port Mapping
 
-Often, you'll want access to the ports of the running container in docker. For that you need to do port mapping from host (your local-machine) to the container. 
+Often, you'll want access to the ports of the running container in docker. For that, you need to do the port mapping from the host (your local machine) to the container. 
 To do that you will use the following command.
 
 ```
@@ -121,11 +121,11 @@ To stop the running container you can do
 docker-compose down
 ```
 
-Above command will stop the running container and remove the image from your host as well.
+The above command will stop the running container and remove the image from your host as well.
 
 This command builds, (re)creates, starts, and attaches to containers for a service.
 
-## Dockerfile: Building Your Own Images
+## Dockerfile: Building Your Images
 
 While using pre-built images is convenient, you'll often need to create custom images for your applications. This is where Dockerfiles come in.
 
@@ -158,7 +158,7 @@ docker build -t my-app:version .
 
 This command builds an image named `my-app` with the tag `version` using the Dockerfile in the current directory (`.`).
 
-You can push your docker-compose file and Dockerfile to the version control host service you're using and anybody can easily run your application in their own machine without any dependency on the machine they are using.
+You can push your docker-compose file and Dockerfile to the version control host service you're using and anybody can easily run your application on their machine without any dependency on the machine they are using.
 
 ## Conclusion
 

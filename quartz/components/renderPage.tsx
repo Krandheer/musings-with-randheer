@@ -243,7 +243,6 @@ export function renderPage(
             </div>
             {RightComponent}
           </Body>
-          <Footer {...componentData} />
         </div>
       </body>
       {pageResources.js

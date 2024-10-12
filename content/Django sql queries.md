@@ -1,3 +1,7 @@
+---
+tags:
+  - "#django"
+---
 To see Django queries in sql format we can use 
 ```python
 python manage.py shell_plus --print-sql

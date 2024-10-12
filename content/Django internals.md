@@ -14,7 +14,7 @@ Now whatever query we do in python we can see sql of that, this command comes fr
 
 Another way to achieve the same things is using Django script, using the command
 ```python
-python manage.py runscripts script-name
+python manage.py runscript script-name
 ```
  This command also comes from django-extension.
  So now we can write our Django query and also print connection.queries to see the sql query.

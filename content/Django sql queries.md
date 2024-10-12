@@ -2,7 +2,7 @@ To see Django queries in sql format we can use
 ```python
 python manage.py shell_plus --print-sql
 ```
-Now whatever query we do in python we can see sql of that, this command comes from django-extensions and not in default way.
+Now whatever query we do in python we can see sql of that, this command comes from django-extensions and not by default from Django.
 
 Another way to achieve the same things is using Django script, using the command
 ```python

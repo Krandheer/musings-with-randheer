@@ -122,6 +122,7 @@ for author in authors:
 This performs two queries:
 - one to fetch all authors
 - one to fetch all the books for those authors
+
 Like select_related prefetch related doesn't do join in sql itself because then it will lead in many redundant data. 
 Each author would be repeated for books they have written. 
 This could significantly increase the number of row returned, specifically for the author who has written multiple books.  

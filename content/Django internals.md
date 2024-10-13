@@ -47,11 +47,11 @@ result = some_model.objects.order_by(Lower("name"))
 ```
 
 ### Django N+1 queries problem
-prefetch_related()
+#### prefetch_related() Method
 
-select_related()
+#### select_related() Method
 
-only()
+#### only() Method:
 select_related() does the join of tables and in join it selects all the field from the tables which may make query large in terms of memory. 
 
 To optimise this we can use .only method and pass it the fields that we want.

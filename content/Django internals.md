@@ -71,11 +71,40 @@ Now we will get one sql query for first line and then n query for book.title mak
 This can make our application slow and unnecessary increase the number of queries.
 
 To solve this Django provides two methods:
-	prefetch_related
-	select_related
-#### prefetch_related() Method
+- prefetch_related
+- select_related
+#### prefetch_related() Method:
 This method is used for many to many or many to one lookup queries. 
-#### select_related() Method
+It performs a separate lookup for each relationship and does the joining in python.
+
+When to use: Use `prefetch_related` when you need to access many related objects or when dealing with many-to-many relationships.
+
+Example:
+without prefetch_related:
+```python
+authors = Author.objects.all()
+for author in authors:
+    print(author.name)
+    for book in author.book_set.all():
+        print(book.title)
+```
+This would result in N+1 queries.
+
+with prefetch_related:
+
+```python
+authors = Author.objects.prefetch_related('book_set')
+for author in authors:
+    print(author.name)
+    for book in author.book_set.all():
+        print(book.title)
+```
+
+This performs two queries:
+- one to fetch all authors
+- one to fetch all the books for those authors
+
+#### select_related() Method:
 This method is used for single-value relationship (ForeignKey, One-To-One) or one to one or one to many lookup queries. It performs sql join and includes the fields of the related object in select statement.
 
 When to use: Use `select_related` when you know you'll need to access the related object and it's a single-valued relationship.

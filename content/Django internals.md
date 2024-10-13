@@ -48,7 +48,9 @@ result = some_model.objects.order_by(Lower("name"))
 
 ### Django N+1 queries problem
 prefetch_related()
+
 selected_related()
+
 only()
 
 ### Django form validations

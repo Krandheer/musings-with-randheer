@@ -74,9 +74,25 @@ To solve this Django provides two methods:
 	prefetch_related
 	select_related
 #### prefetch_related() Method
-
+This method is used for many to many or many to one lookup queries. 
 #### select_related() Method
+This method is used for single-value relationship (ForeignKey, One-To-One) or one to one or one to many lookup queries. It performs sql join and includes the fields of the related object in select statement.
 
+When to use: Use `select_related` when you know you'll need to access the related object and it's a single-valued relationship.
+
+Example:
+```python
+books = Book.objects.all()
+for book in books:
+    print(f"{book.title} - by {book.author.name}")
+```
+This query will result in additional queries for each author.
+```python
+books = Book.objects.select_related('author')
+for book in books:
+    print(f"{book.title} - by {book.author.name}")
+```
+This perform single query with joins, fetching all necessary data at once.
 #### only() Method:
 select_related() does the join of tables and in join it selects all the field from the tables which may make query large in terms of memory. 
 

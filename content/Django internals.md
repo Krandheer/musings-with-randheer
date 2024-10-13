@@ -73,6 +73,25 @@ This can make our application slow and unnecessary increase the number of querie
 To solve this Django provides two methods:
 - prefetch_related
 - select_related
+
+#### select_related() Method:
+This method is used for single-value relationship (ForeignKey, One-To-One) or one to one or one to many lookup queries. It performs sql join and includes the fields of the related object in select statement.
+
+When to use: Use `select_related` when you know you'll need to access the related object and it's a single-valued relationship.
+
+Example:
+```python
+books = Book.objects.all()
+for book in books:
+    print(f"{book.title} - by {book.author.name}")
+```
+This query will result in additional queries for each author.
+```python
+books = Book.objects.select_related('author')
+for book in books:
+    print(f"{book.title} - by {book.author.name}")
+```
+This perform single query with joins, fetching all necessary data at once.
 #### prefetch_related() Method:
 This method is used for many to many or many to one lookup queries. 
 It performs a separate lookup for each relationship and does the joining in python.
@@ -103,25 +122,10 @@ for author in authors:
 This performs two queries:
 - one to fetch all authors
 - one to fetch all the books for those authors
+Like select_related prefetch related doesn't do join in sql itself because then it will lead in many redundant data. 
+Each author would be repeated for books they have written. 
+This could significantly increase the number of row returned, specifically for the author who has written multiple books.  
 
-#### select_related() Method:
-This method is used for single-value relationship (ForeignKey, One-To-One) or one to one or one to many lookup queries. It performs sql join and includes the fields of the related object in select statement.
-
-When to use: Use `select_related` when you know you'll need to access the related object and it's a single-valued relationship.
-
-Example:
-```python
-books = Book.objects.all()
-for book in books:
-    print(f"{book.title} - by {book.author.name}")
-```
-This query will result in additional queries for each author.
-```python
-books = Book.objects.select_related('author')
-for book in books:
-    print(f"{book.title} - by {book.author.name}")
-```
-This perform single query with joins, fetching all necessary data at once.
 #### only() Method:
 select_related() does the join of tables and in join it selects all the field from the tables which may make query large in terms of memory. 
 

@@ -29,6 +29,28 @@ print(connection.queries)
 
 In this way can always see what Django ORM is executing behind the scene and knowing this internal we can write more optimal Django queries to speed up our application.
 
+### Order by queries
+When we do Django order by query and we use the key as something which is string, then in that case we may see wrong result because of lower/upper casing of key.
+
+for example
+```python
+result = some_model.objects.order_by("name")
+```
+This query could give wrong result on basis of casing of name.
+
+To resolve this Django offers db inbuilt function so that query when transformed to sql does the lower/upper casing of name field and then returns the result on basis of that.
+
+Example:
+```python
+from django.db.models.functions import Lower
+result = some_model.objects.order_by(Lower("name"))
+```
+
+### Django N+1 queries problem
+prefetch_related()
+selected_related()
+only()
+
 ### Django form validations
 If we want to implement form validation on any field in Django model, then while defining the model we can pass list of validation function to validators while defining the field.
 

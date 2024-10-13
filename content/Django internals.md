@@ -53,10 +53,13 @@ select_related()
 
 only()
 select_related() does the join of tables and in join it selects all the field from the tables which may make query large in terms of memory. 
+
 To optimise this we can use .only method and pass it the fields that we want.
 This way the converted sql from our query will select fields only passed in .only method from join table.
+
 While using only() method we should be very cautious about using only those fields that are passed inside only() method, otherwise Django will do extra queries which will defeat the purpose of using select_related(). 
-So use only() when you really need to optimise your application to this level otherwise you may be good without using it too.
+
+So use only() method when you really need to optimise your application to this level otherwise you may be good without using it too.
 ### Django form validations
 If we want to implement form validation on any field in Django model, then while defining the model we can pass list of validation function to validators while defining the field.
 

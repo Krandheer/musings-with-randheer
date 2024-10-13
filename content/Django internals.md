@@ -47,6 +47,32 @@ result = some_model.objects.order_by(Lower("name"))
 ```
 
 ### Django N+1 queries problem
+Let's understand what is N+1 queries problem
+
+suppose we have following table:
+```python
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+```
+And we want to display all others and their books.
+For that we write the following query
+```python
+authors = Author.objects.all()
+for author in authors:
+    print(author.name)
+    for book in author.book_set.all():
+        print(book.title)
+```
+Now we will get one sql query for first line and then n query for book.title making total query to n+1. 
+This can make our application slow and unnecessary increase the number of queries.
+
+To solve this Django provides two methods:
+	prefetch_related
+	select_related
 #### prefetch_related() Method
 
 #### select_related() Method

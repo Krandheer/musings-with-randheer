@@ -10,7 +10,15 @@ suppose you have app named core and a model inside it as Account, then after mig
 
 For example I have an app as core and model inside it as restaurant and not this is how contenttype table create by contenttype model inside contenttypes app given by default from Django will look like.
 
-![[Screenshot 2024-10-17 at 11.29.42 PM.png]]
+| id  | app_label    | model       |
+| --- | ------------ | ----------- |
+| 1   | admin        | logentry    |
+| 2   | auth         | permission  |
+| 3   | auth         | group       |
+| 4   | auth         | user        |
+| 5   | contenttypes | contenttype |
+| 6   | sessions     | session     |
+| 7   | core         | restaurant  |
 
 To see objects of contenttype model I can perform normal Django ORM query.
 for example 

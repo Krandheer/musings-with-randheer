@@ -10,3 +10,4 @@ This is my [digital garder](https://maggieappleton.com/garden-history), a collec
 - [[docker crash course]]
 - [[testing you]]
 - [[Django internals]]
+- [[Django internals part 2]]

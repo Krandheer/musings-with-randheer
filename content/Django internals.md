@@ -159,3 +159,4 @@ except ValidationError as e:
 object1.save()
 ```
 
+To read more see this: [[Django internals part 2]]

@@ -20,7 +20,7 @@ For example I have an app as core and model inside it as restaurant and not this
 | 6   | sessions     | session     |
 | 7   | core         | restaurant  |
 
-To see objects of contenttype model I can perform normal Django ORM query.
+To see objects of contenttype model we can perform normal Django ORM query.
 for example 
 
 ```python

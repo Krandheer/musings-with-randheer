@@ -1,15 +1,15 @@
 ### Content type
 
-what if you want to write a general query in Django just like a function which take some argument and then perform some action.
-This is where contenttypes model/app shines in Django.
+What if you want to write a general query in Django just like a function which take some argument and then perform some action.
+This is where contenttypes app shines in Django.
 
-This app comes pre-installed with Django in Django settings.
+This app comes pre-installed with Django.
 
-The purpose of this application (contenttypes) is to track all other models install in your project.
+The purpose of this application (contenttypes) is to track all other apps installed and model inside those app in your project.
 
 suppose you have app named core and a model inside it as Account, then after migration you will get a entry in contentype table as app_label = core, and model = account.
 
-For example I have an app as core and model inside it as restaurant and not this is how contenttype table create by contenttype model inside contenttypes app given by default from Django will look like.
+For example I have an app as core and model inside it as restaurant and now this is how contenttype table created by contenttype model inside contenttypes app given by default from Django will look like.
 
 | id  | app_label    | model       |
 | --- | ------------ | ----------- |
@@ -32,7 +32,7 @@ print(content_type)
 <QuerySet [<ContentType: admin | log entry>, <ContentType: auth | permission>, <ContentType: auth | group>, <ContentType: auth | user>, <ContentType: contenttypes | content type>, <ContentType: sessions | session>, <ContentType: core | restaurant>, <ContentType: core | rating>, <ContentType: core | sale>, <ContentType: core | order>, <ContentType: core | product>]>
 ```
 
-Now since we know that contenttype has app_label and model as it's one of the field (refer to table screenshot)
+Now since we know that contenttype has app_label and model as it's field.
 
 we can perform following query:
 
@@ -46,6 +46,6 @@ print(all_objects)
 
 ```
 
-now the query we wrote we can encapsulate that and just pass the model and class name and this same query will get executed on those model.
+This query can be encapsulate and then can be re-used by just passing the model and class name.
 
 So basically in this way we can encapsulate a query to be performed repeatedly on different app and model.

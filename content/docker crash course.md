@@ -156,7 +156,7 @@ To build an image from your Dockerfile:
 docker build -t my-app:version .
 ```
 
-This command builds an image named `my-app` with the tag `version` using the Dockerfile in the current directory (`.`).
+This command builds an image named `my-app` with the tag `version` using the Dockerfile in the current directory.
 
 You can push your docker-compose file and Dockerfile to the version control host service you're using and anybody can easily run your application on their machine without any dependency on the machine they are using.
 

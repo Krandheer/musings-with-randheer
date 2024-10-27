@@ -2,7 +2,7 @@
 title: Home
 ---
 
-Hi there 👋, 
+Hi there 👋,\n
 I'm a software engineer based in Bengaluru India.
 
 This is my [GitHub](krandheer.github.io) profile.

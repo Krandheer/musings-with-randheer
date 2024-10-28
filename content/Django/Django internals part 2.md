@@ -1,3 +1,7 @@
+---
+tags:
+  - "#django"
+---
 ### Content type
 
 What if you want to write a general query in Django just like a function which take some argument and then perform some action.

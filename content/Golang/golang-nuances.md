@@ -15,7 +15,7 @@ func someFunction(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-Since we are using `Form` keyword the confusion arises is query params treated as Form value?.
+Since we are using `Form` keyword the confusion arises, is query params treated as Form value?.
 
 So the interesting thing here is that r.FormValue internally calls r.ParseForm() if you have not called, and in that way it first try to parse for form and it works for both get and post request.  
 So if you have form in your get request and query params also with same key as `page` then it will parse the value for form but not query params Because it only gets the first value for the key it is looking for.  

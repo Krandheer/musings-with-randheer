@@ -1,5 +1,11 @@
 @use "./base.scss";
 
+body[data-slug=""] .article-title,
+body[data-slug="index"] .article-title {
+  display: none;
+}
+
+
 .page-title h1 {
   background: linear-gradient(135deg, #2d5016, #4a7c59, #84a59d);
   -webkit-background-clip: text;

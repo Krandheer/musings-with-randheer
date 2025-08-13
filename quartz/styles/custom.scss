@@ -1,3 +1,175 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+.page-title h1 {
+  background: linear-gradient(135deg, #2d5016, #4a7c59, #84a59d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.page-title h1::after {
+  content: "🌱";
+  position: absolute;
+  right: -2rem;
+  top: 0;
+  -webkit-text-fill-color: initial;
+  background: none;
+}
+
+blockquote {
+  background: linear-gradient(90deg, var(--secondary), transparent);
+  border-left: 4px solid var(--secondary);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  position: relative;
+}
+
+blockquote::before {
+  content: "";
+  font-size: 4rem;
+  color: var(--secondary);
+  position: absolute;
+  left: 0.5rem;
+  top: -0.5rem;
+  line-height: 1;
+  opacity: 0.3;
+}
+
+// Status indicators for learning progress
+.task-list-item input[type="checkbox"] {
+  position: relative;
+}
+
+.task-list-item input[type="checkbox"]:checked::after {
+  content: "🌱";
+  position: absolute;
+  left: 1.2rem;
+  top: -0.2rem;
+  font-size: 0.8rem;
+}
+
+// Enhanced internal links with growth metaphor
+.internal {
+  background: linear-gradient(90deg, var(--highlight), transparent);
+  border-left: 3px solid var(--tertiary);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0 4px 4px 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.internal:hover {
+  transform: translateX(3px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: linear-gradient(90deg, var(--tertiary), transparent);
+}
+
+.internal::before {
+  content: "🔗";
+  margin-right: 0.3rem;
+  opacity: 0.7;
+}
+
+// Stats and metrics styling
+.garden-stats {
+  background: var(--lightgray);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 0.5rem;
+  background: var(--light);
+  border-radius: 4px;
+  border: 1px solid var(--gray);
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--secondary);
+}
+
+// External link indicators (inspired by Juha-Matti's setup)
+a[href^="http"]:not(.internal)::after {
+  content: "↗";
+  margin-left: 0.3rem;
+  opacity: 0.7;
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+
+// Enhanced code blocks
+pre {
+  border-radius: 8px;
+  border: 1px solid var(--lightgray);
+  position: relative;
+  overflow: hidden;
+}
+
+pre::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--secondary);
+  color: var(--light);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  border-bottom-left-radius: 4px;
+}
+
+// Mobile enhancements
+@media (max-width: 768px) {
+  .garden-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .page-title h1::after {
+    display: none;
+  }
+}
+
+// Dark mode enhancements
+[saved-theme="dark"] {
+  .garden-stats {
+    background: var(--darkgray);
+  }
+  
+  .stat-item {
+    background: var(--dark);
+    border-color: var(--lightgray);
+  }
+}
+
+// Animated elements
+@keyframes growIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.page-listing li {
+  animation: growIn 0.3s ease-out;
+}
+
+.page-listing li:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.page-listing li:nth-child(even) {
+  animation-delay: 0.2s;
+}

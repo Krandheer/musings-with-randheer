@@ -2,12 +2,33 @@
 title: Home
 ---
 
-Hi there 👋,  
-I'm a software engineer based in Bengaluru India.  
-Here is my [GitHub](https://github.com/Krandheer) profile.  
-Contact me through [Email](mailto:gatuam.randheer.iitd.gmail.com)
+# 👋 Welcome to my Digital Garden,  
+I'm **Randheer**, a software engineer based in Bengaluru, India, passionate about building scalable systems.
 
-This is my digital garden, a collection of personal notes and living documents which I'm happy to make public and share. You may look around using the tree view, the link graph, or these starting points:  
-- [[docker crash course]]
-- [[Django internals]]
-- [[Django internals part 2]]
+## 🚀 Quick Links
+- **GitHub**: [Krandheer](https://github.com/Krandheer)  
+- **Email**: [Contact me](mailto:gatuam.randheer.iitd.gmail.com)
+
+## 🌱 Explore My Notes
+
+This digital garden contains my personal notes and learnings. Feel free to explore:
+
+### 🐳 DevOps & Infrastructure
+- [[docker crash course]] - Complete Docker fundamentals
+
+### 🐍 Python & Django
+- [[Django]] - List of writings related to Django
+- [[Django internals]] - Deep dive into Django architecture  
+- [[Django internals part 2]] - Advanced Django concepts
+
+
+### 📱 Mobile Development
+- [[Flutter]] - Cross-platform mobile development
+
+
+### 🔧 Backend Technologies
+- [[Golang]] - Go programming essentials
+- [[Redis]] - In-memory data structures
+
+---
+*Last updated: {{date}}*

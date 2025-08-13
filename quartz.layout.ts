@@ -8,8 +8,10 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/Krandheer",
-      Email: "mailto:gatuam.randheer.iitd.gmail.com",
+      "🐱 GitHub": "https://github.com/Krandheer",
+      "📧 Email": "mailto:gatuam.randheer.iitd@gmail.com",
+      "🌐 LinkedIn": "https://linkedin.com/in/your-profile", // Update this
+      "🌱 Digital Garden": "https://github.com/Krandheer/musings-with-randheer",
     },
   }),
 }
@@ -27,23 +29,55 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search({ enablePreview: true }),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.Explorer({
+      folderClickBehavior: "collapse",
+      folderDefaultState: "collapsed",
+      useSavedState: true,
+      sortFn: (a, b) => {
+        if ((!a.file && !b.file) || (a.file && b.file)) {
+          return a.displayName.localeCompare(b.displayName)
+        }
+        return a.file ? 1 : -1
+      }
+    })),
   ],
   right: [
     Component.Graph({
       localGraph: {
+        drag: true,
+        zoom: true,
+        depth: 2,
+        scale: 1.1,
+        repelForce: 0.5,
+        centerForce: 0.3,
+        linkDistance: 30,
+        fontSize: 0.6,
+        opacityScale: 1,
         showTags: true,
-        focusOnHover: true,
-        scale: 1.2,
-        repelForce: 0.7,
+        removeTags: [],
+        focusOnHover: false,
       },
       globalGraph: {
+        drag: true,
+        zoom: true,
+        depth: -1,
+        scale: 0.9,
+        repelForce: 0.5,
+        centerForce: 0.3,
+        linkDistance: 30,
+        fontSize: 0.6,
+        opacityScale: 1,
         showTags: true,
+        removeTags: [],
         focusOnHover: true,
       }
     }),
     Component.DesktopOnly(Component.TableOfContents()),
-    Component.RecentNotes({ limit: 5 }),
+    Component.RecentNotes({
+      title: "🌱 Recently Growing",
+      limit: 5,
+      showTags: true,
+    }),
     Component.Backlinks(),
   ],
 }
@@ -54,9 +88,13 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Search(),
+    Component.Search({ enablePreview: true }),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.Explorer({
+      folderClickBehavior: "collapse",
+      folderDefaultState: "collapsed",
+      useSavedState: true,
+    })),
   ],
   right: [],
 }

@@ -11,7 +11,7 @@ I'm **Randheer**, a software engineer based in Bengaluru, India, passionate abou
 ## 🚀 Quick Links
 - **GitHub**: [Krandheer](https://github.com/Krandheer)  
 - **Email**: [Contact me](mailto:gatuam.randheer.iitd.gmail.com)
-- **LinkedIn**: [Connect with me](https://linkedin.com/in/your-profile)
+- **LinkedIn**: [Connect with me](https://www.linkedin.com/in/randheer-kumar-gautam-804908120/)
 
 ## 🌱 What You'll Find Here
 

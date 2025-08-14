@@ -5,7 +5,7 @@ date: 2024-01-15
 lastmod: 2024-01-15
 ---
 
-# 👋 Welcome to my Digital Garden,  
+# 👋 Welcome to my Digital Garden   
 I'm **Randheer**, a software engineer based in Bengaluru, India, passionate about building scalable systems.
 
 ## 🚀 Quick Links

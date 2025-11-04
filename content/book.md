@@ -6,6 +6,11 @@ date: 2024-01-15
 
 ![[book.png|200]]
 
+**Buy Now - ₹249**:  
+- Buy PDF [here](https://dakshana.gumroad.com/l/bnejzg)
+- Buy E-Book [here](https://amzn.in/d/959YnsG)
+
+
 Ancient wisdom meets modern challenges in this practical guide to living a well-lived life.
 What does Marcus Aurelius have to teach us about managing anxiety in the digital age? How can understanding compound interest transform not just your finances, but your entire approach to life? Why do 90% of people struggle with the same fundamental challenges—and what can we learn from those who don't?
 Reflections on Life, Growth, and Wisdom is a compilation of insights gathered from years of writing personal newsletters, deep reading, and real-world experience. This isn't theory from an ivory tower—it's practical wisdom forged through trial, error, and constant refinement.

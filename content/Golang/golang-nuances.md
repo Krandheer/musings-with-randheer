@@ -33,3 +33,9 @@ This method explicitly is for getting query params. It gets all the value associ
 
 key to remember:
 In get request if there is any from submitted then form values becomes query params.
+
+
+### Pointers in Golang
+
+Go makes pointers a lot easier to deal with than C/C++. You don’t have to worry about constantly writing `*` to dereference values — the compiler handles that for you when accessing struct fields or calling methods. It keeps pointers powerful but much less painful.
+

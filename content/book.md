@@ -23,7 +23,9 @@ For anyone seeking to think more clearly, act more purposefully, and live more i
 
 Get instant PDF delivery after purchase!
 
-[**Buy Now - ₹XXX**](https://your-instamojo-payment-link.com)
+**Buy Now - ₹249**:  
+[PDF](https://dakshana.gumroad.com/l/bnejzg)
+[Ebook](https://amzn.in/d/959YnsG)
 
 ---
 

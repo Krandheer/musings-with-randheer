@@ -9,6 +9,7 @@ lastmod: 2024-01-15
 I'm **Randheer**, a software engineer based in Bengaluru, India, passionate about building scalable systems.
 
 ## 🚀 Quick Links
+- **My book**: [[book|Buy my book here]]
 - **GitHub**: [Krandheer](https://github.com/Krandheer)  
 - **Email**: [Contact me](mailto:gatuam.randheer.iitd.gmail.com)
 - **LinkedIn**: [Connect with me](https://www.linkedin.com/in/randheer-kumar-gautam-804908120/)

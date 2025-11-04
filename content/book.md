@@ -8,8 +8,7 @@ date: 2024-01-15
 
 **Buy Now - ₹249**:  
 - Buy PDF [here](https://dakshana.gumroad.com/l/bnejzg)
-- Buy E-Book [here](https://amzn.in/d/959YnsG)
-
+- Buy E-Book on Amazon [here](https://amzn.in/d/959YnsG)
 
 Ancient wisdom meets modern challenges in this practical guide to living a well-lived life.
 What does Marcus Aurelius have to teach us about managing anxiety in the digital age? How can understanding compound interest transform not just your finances, but your entire approach to life? Why do 90% of people struggle with the same fundamental challenges—and what can we learn from those who don't?

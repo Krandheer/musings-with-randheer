@@ -6,7 +6,7 @@ date: 2024-01-15
 
 ![[book.png|200]]
 
-**Buy Now - ₹249**:  
+**Buy Now - ₹249**:
 - Buy PDF [here](https://dakshana.gumroad.com/l/bnejzg)
 - Buy E-Book on Amazon [here](https://amzn.in/d/959YnsG)
 
@@ -27,7 +27,7 @@ For anyone seeking to think more clearly, act more purposefully, and live more i
 
 Get instant PDF and E-book delivery after purchase!
 
-**Buy Now - ₹249**:  
+**Buy Now - ₹249**:
 - Buy PDF [here](https://dakshana.gumroad.com/l/bnejzg)
 - Buy E-Book [here](https://amzn.in/d/959YnsG)
 

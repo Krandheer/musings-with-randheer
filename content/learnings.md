@@ -18,7 +18,6 @@ description: "What I'm currently learning and working on"
 - [[Microservices Patterns]]
 
 ## 🛠️ Active Projects
-- [[Personal Task Manager]] - Django + React app
 - [[Kubernetes Learning Lab]] - Hands-on cluster setup
 - [[Docker Optimization Guide]] - Performance tips collection
 

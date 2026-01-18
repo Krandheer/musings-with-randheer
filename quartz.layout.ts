@@ -10,7 +10,7 @@ export const sharedPageComponents: SharedLayout = {
     links: {
       "🐱 GitHub": "https://github.com/Krandheer",
       "📧 Email": "mailto:gatuam.randheer.iitd@gmail.com",
-      "🌐 LinkedIn": "https://linkedin.com/in/your-profile", // Update this
+      "🌐 LinkedIn": "https://linkedin.com/in/randheer-kumar-gautam-804908120/", // Update this
       "🌱 Digital Garden": "https://github.com/Krandheer/musings-with-randheer",
     },
   }),

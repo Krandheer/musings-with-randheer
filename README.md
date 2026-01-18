@@ -1,18 +1,20 @@
-# Quartz v4
+# 🌱 Musings with Randheer
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+My personal digital garden built with [Quartz](https://quartz.jzhao.xyz/). A living collection of notes on software engineering, system design, and continuous learning.
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
-Quartz v4 features a from-the-ground rewrite focusing on end-user extensibility and ease-of-use.
+## 🌐 Live Site
+Visit: [musings.randheer.in](https://musings.randheer.in)
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+## 📝 What's Inside
+- Backend Development (Django, Go)
+- Infrastructure & DevOps (Docker, Kubernetes)
+- Mobile Development (Flutter)
+- System Design & Architecture
+- Learning in public
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+## 🛠️ Built With
+- [Quartz v4](https://quartz.jzhao.xyz/) - Static site generator
+- Full-text search, graph view, and backlinks
 
-## Sponsors
-
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+## 📄 License
+Content is © Randheer Kumar Gautam. Code is MIT licensed.

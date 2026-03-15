@@ -1,39 +1,5 @@
-# Learning system design with golang
-
----
-
-**User**
-
-You are expert software engineer having expert knowledge of designing system and architecture.
-
-I want to learn system design. I want to learn both high level and low level. I want to implement everything I learn using Golang. Since anybody teaching low level design they talk on implementing and designing class and Golang doesn't have classes So I want to learn it from you. And I want you teach me how Golang will do everything that oops based language java or python will do, and then we do it in Golang from scratch. 
-
-Since your context window may exhaust till we complete everything related to system design, so I first want you to find out how we will complete this adventure of our without breaking context or flow
-
----
-
-**Cursor**
-
-Of course. I'd be delighted to guide you on this journey into system design with Go. It's an excellent choice of language, and your desire to understand the fundamentals from first principles is the right approach for building deep expertise.
-
-You've raised a very important and practical point about the context window. A long-term learning process like this requires a structured approach to maintain continuity.
-
-### Our Strategy: The "Living" Learning Plan
-
-To solve the context problem, we will create a "living document" in your project. This document, let's call it `LEARNING_PLAN.md`, will serve as our anchor.
-
-Here’s how it will work:
-
-1.  **Table of Contents:** It will contain the roadmap of all the topics we plan to cover, from LLD principles in Go to HLD concepts and full-fledged system design case studies.
-2.  **Progress Tracker:** As we complete each topic, we will mark it as done. This helps us see our progress and know exactly where we are.
-3.  **Session Log & Notes:** At the end of each session, I will provide a concise summary of what we discussed and the key takeaways. We will add this to our plan. When we start a new session, you can provide me with the last few entries, and I'll be instantly up to speed.
-4.  **Code Index:** The plan will link to the specific Go files or packages we create for each concept, making it easy to reference our implementations.
-
-This approach effectively gives us an unlimited context window, managed by a simple file in your workspace.
 
 ### The Roadmap
-
-Here is a proposed curriculum. We can adjust it based on your interests and pace.
 
 ---
 

@@ -1,4 +1,3 @@
-
 ### The Roadmap
 
 ---
@@ -17,7 +16,7 @@ This part directly addresses your question about achieving OOP principles in a n
 *   **Module 2: Foundational Design Patterns in Go**
     *   **Creational:** Singleton, Factory, Builder
     *   **Structural:** Adapter, Decorator, Facade
-    *   **Behavioral:** Strategy, Observer, Chain of Responsibility
+    *   **Behavioural:** Strategy, Observer, Chain of Responsibility
     *   **Concurrency:** Worker Pools, Fan-in/Fan-out, Rate Limiting
 
 ---
@@ -55,120 +54,13 @@ We will start with requirements, create the HLD, break it down into LLD, and the
 What do you think of this plan? If you're happy with it, we can begin by setting up your project structure and creating the `LEARNING_PLAN.md` file.
 
 ---
-
-**User**
-
-I'm happy with this plan and I want you to cover all interview related case study so that after completing this I should be not only be expert in system design but also these interview should become cakewalk
-
----
-
-**Cursor**
-
-Excellent! That's the spirit. We'll make sure you're not just learning the theory but can confidently apply it to the most common and challenging interview problems. I will expand our case study section to cover the classics that frequently appear in top tech company interviews.
-
-Let's get everything set up. I'll start by creating our `LEARNING_PLAN.md` file and a basic directory structure for our project. This will be our home base for this entire learning adventure.
-
-```markdown
-# System Design and Golang Mastery: A Learning Plan
-
-This document is our "living" plan to track progress, store notes, and maintain context throughout our system design journey.
-
----
-
-## Part 1: Low-Level Design (LLD) with Go - The Idiomatic Approach
-
-This part directly addresses how to achieve OOP principles in a non-OOP language, focusing on Go's unique strengths.
-
-*   **Module 1: Thinking in Go**
-    *   [ ] Structs and Methods vs. Classes
-    *   [ ] Interfaces: The Power of Implicit Contracts (Polymorphism)
-    *   [ ] Composition over Inheritance: Go's core philosophy
-    *   [ ] Encapsulation through Packages
-    *   [ ] Error Handling Strategies
-
-*   **Module 2: Foundational Design Patterns in Go**
-    *   **Creational Patterns**
-        *   [ ] Singleton
-        *   [ ] Factory
-        *   [ ] Builder
-    *   **Structural Patterns**
-        *   [ ] Adapter
-        *   [ ] Decorator
-        *   [ ] Facade
-    *   **Behavioral Patterns**
-        *   [ ] Strategy
-        *   [ ] Observer
-        *   [ ] Chain of Responsibility
-    *   **Concurrency Patterns**
-        *   [ ] Worker Pools
-        *   [ ] Fan-in / Fan-out
-        *   [ ] Rate Limiting (LLD Implementation)
-
----
-
-## Part 2: High-Level Design (HLD) - The Big Picture
-
-*   **Module 3: The Building Blocks of Scale**
-    *   [ ] Vertical vs. Horizontal Scaling
-    *   [ ] Load Balancers (L4 vs. L7)
-    *   [ ] Caching: Strategies and Patterns (e.g., Write-Through, Write-Around, Read-Aside)
-    *   [ ] Databases: SQL vs. NoSQL, Sharding, Replication, Indexes
-    *   [ ] Asynchronism: Message Queues and Event-Driven Architecture
-    *   [ ] Content Delivery Networks (CDN)
-    *   [ ] Proxies (Forward vs. Reverse)
-
-*   **Module 4: Ensuring Reliability and Consistency**
-    *   [ ] CAP Theorem explained practically
-    *   [ ] Consistency Patterns
-    *   [ ] Availability Patterns (Failover, Redundancy)
-    *   [ ] API Design: REST vs. GraphQL vs. gRPC
-
----
-
-## Part 3: System Design Case Studies (HLD + LLD Implementation)
-
-We will tackle these classic interview problems from requirements gathering to HLD, LLD, and finally, implementing core components in Go.
-
-*   [ ] **Case Study 1:** URL Shortener (like TinyURL)
-*   [ ] **Case Study 2:** Web Crawler
-*   [ ] **Case Study 3:** Distributed Task Queue / Job Scheduler
-*   [ ] **Case Study 4:** Pastebin / Codebin service
-*   [ ] **Case Study 5:** Rate Limiter (Distributed)
-*   [ ] **Case Study 6:** Search Autocomplete System (Trie-based)
-*   [ ] **Case Study 7:** Ride-Sharing App (like Uber)
-*   [ ] **Case Study 8:** Chat Application (like WhatsApp)
-*   [ ] **Case Study 9:** Social Media Feed and News Feed (like Twitter/Facebook)
-*   [ ] **Case Study 10:** Video Streaming Service (like YouTube/Netflix)
-*   [ ] **Case Study 11:** Distributed Key-Value Store (like DynamoDB)
-
----
-
-## Session Log & Notes
-
-*(We will add summaries of our sessions here to maintain context)*
-```
-
-Excellent. I've created the `LEARNING_PLAN.md` file which will be our guide.
-
-Next, I'll set up the basic project structure. I will create two directories, `low-level-design` and `high-level-design`, to organize our code.
-
-Great, the directories have been created. I'll mark the setup task as complete.
-
-We have successfully set up our learning environment:
-1.  A comprehensive `LEARNING_PLAN.md` to guide us.
-2.  A clean directory structure for our code.
-
-Now we are ready to begin.
-
-According to our plan, the first topic is **Module 1: Thinking in Go**, and the first item is **Structs and Methods vs. Classes**.
-
-Let's begin with the first item on our agenda: **Module 1: Thinking in Go - Structs and Methods vs. Classes**.
+### Module 1: Thinking in Go - Structs and Methods vs. Classes**.
 
 This is the most fundamental concept to grasp when coming from a language like Java or Python.
 
-### The Core Idea: Data and Behavior
+### The Core Idea: Data and Behaviour
 
-In classic Object-Oriented Programming (OOP), a **class** is a blueprint that bundles **data (attributes/fields)** and **behavior (methods)** that acts on that data into a single unit.
+In classic Object-Oriented Programming (OOP), a **class** is a blueprint that bundles **data (attributes/fields)** and **behaviour (methods)** that acts on that data into a single unit.
 
 ```python
 # A Python class
@@ -194,29 +86,7 @@ The key difference is that the data (`struct`) and the behavior (`method`) are d
 
 ### Let's Build it in Go
 
-We will now create a Go equivalent of the Python `Employee` class. I'll place this inside the `low-level-design` directory to keep our project organized.
-
-First, let's create a directory for this module: `low-level-design/01-thinking-in-go/01-structs-vs-classes`.
-
-I will create the directory and then create a `main.go` file with our `Employee` example. Are you ready?
-
-```python
-# A Python class
-class Employee:
-    # The "constructor" to initialize data
-    def __init__(self, name, title, salary):
-        self.name = name
-        self.title = title
-        self.salary = salary
-
-    # A method (behavior) that uses the data
-    def give_raise(self, percent):
-        self.salary = self.salary * (1 + (percent / 100.0))
-```
-
----
-
-Perfect. Now that the directory is created, I will create the `main.go` file inside it and add the code.
+We will now create a Go equivalent of the Python `Employee` class. I'll place this inside the `low-level-design` directory to keep our project organised.
 
 ```go
 package main
@@ -291,7 +161,7 @@ An interface in Go defines a set of method signatures. Any type that has all the
 
 This is often called "duck typing": if it walks like a duck and quacks like a duck, Go considers it a duck.
 
-This is called **implicit implementation**. An interface in Go is simply a collection of method signatures. It defines a set of behaviors. Any type that implements these methods can be treated as a value of that interface type. This is how Go achieves **polymorphism**.
+This is called **implicit implementation**. An interface in Go is simply a collection of method signatures. It defines a set of behaviours. Any type that implements these methods can be treated as a value of that interface type. This is how Go achieves **polymorphism**.
 
 This simple rule has profound implications:
 *   **Decoupling:** You can write functions that operate on interfaces without knowing or depending on the specific, concrete types.
@@ -482,12 +352,6 @@ First, I need to create the directory structure. This time, we'll have a `main.g
 ### Let's Build It: The `employee` Package
 
 To demonstrate this, we can't just use a single `main.go` file. We need to create a separate package and then import it.
-
-1.  I've already created the directory structure:
-    *   `.../04-encapsulation-by-packages/` will contain our `main` program.
-    *   `.../04-encapsulation-by-packages/employee/` will be our new `employee` package.
-
-2.  Next, I'll create `employee/employee.go` to define an `Employee` struct where the salary is an unexported field, and we provide controlled access via methods.
 
 ```go
 // Package employee defines a type and methods for employees.
@@ -758,7 +622,7 @@ We'll create a simple singleton for managing application settings. First, I'll c
 
 Directory created. Now, I'll write the code for our thread-safe singleton settings manager.
 
-I will create two files:
+We will create two files:
 1. `low-level-design/02-design-patterns/01-singleton/settings/settings.go`: This will be our `settings` package, where the singleton logic resides.
 2. `low-level-design/02-design-patterns/01-singleton/main.go`: This will be our main program that uses the singleton to prove it works.
 
@@ -877,15 +741,6 @@ Let's review the key elements that make this the idiomatic Go singleton:
 *   **`sync.Once`**: The `once` variable is the star of the show. Its `Do` method guarantees that the function literal `func() { ... }` is executed atomically and only a single time, even if a hundred goroutines call `GetInstance()` at the exact same moment.
 *   **Exported `GetInstance()`**: This is the sole public entry point. It's the gatekeeper that controls access to the singleton.
 
-To run this and see the proof, navigate to the lesson's root directory and use `go run .`:
-
-```bash
-cd low-level-design/02-design-patterns/01-singleton
-go run .
-```
-
-You will see output showing multiple goroutines trying to get the instance, but the "Initializing..." message will print exactly once. You'll also see that the memory address printed by each goroutine is identical, proving they all share the same single instance.
-
 This pattern is very powerful for managing global state in a safe and controlled manner.
 
 ---
@@ -912,8 +767,6 @@ We will implement the notification system described above.
 2.  Create concrete types (`EmailNotifier`, `SmsNotifier`) that implement this interface.
 3.  Create a factory function `GetNotifier(notificationType string)` that returns the appropriate `Notifier` based on the input.
 
-
-First, I'll create the `main.go` file in the directory I just made. This time, we'll put all the related code in one file for simplicity, as we aren't creating a reusable package like the singleton.
 
 ```go
 package main

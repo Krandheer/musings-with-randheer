@@ -421,7 +421,5 @@ This is the essence of why `async/await` is faster and more efficient: it allows
 if you need declaration merging then only use interface otherwise types does the task and is more flexible then interface. [Chat link](https://chatgpt.com/c/693fdf3b-b31c-8321-b000-2f978ccdbd40)
 
 
-00 = 0
-11 = 0
-01=1
-10=1
+
+event-loop, io-multiplexer: https://chatgpt.com/c/69e4cf66-b26c-8324-b6d8-d8c183d94bbe

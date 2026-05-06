@@ -221,6 +221,4 @@ This is the essence of why `async/await` is faster and more efficient: it allows
 
 If you need declaration merging then only use interface otherwise types does the task and is more flexible than interface. [Chat link](https://chatgpt.com/c/693fdf3b-b31c-8321-b000-2f978ccdbd40)
 
-
-
-event-loop, multiplexer: https://chatgpt.com/c/69e4cf66-b26c-8324-b6d8-d8c183d94bbe
+event-loop, i/o multiplexer: https://chatgpt.com/share/69fb7798-b3e4-83aa-884e-4ef7faa90b70

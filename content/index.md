@@ -5,36 +5,51 @@ date: 2024-01-15
 lastmod: 2026-01-18
 ---
 
-# 👋 Welcome to my Digital Garden   
-I'm **Randheer**, a software engineer based in Bengaluru, India. This is my living collection of notes, learning and discoveries. I am passionate about building scalable systems.
+<section class="hero">
+  <p class="eyebrow">Digital garden · Bengaluru</p>
+  <h1>Hi, I'm Randheer 🪴</h1>
+  <p class="lede">A software engineer's living notes on backend systems, Django, Go, Flutter, Docker, and the occasional book.</p>
+</section>
 
-## Start Here
-- [[learnings|Learning notes and experiments]]
-- [[book|My book]]
-- [[docker crash course|Docker crash course]]
-- [[Django|Django]]
-- [[Flutter|Flutter]]
-- [[Golang|Go]]
-- [[Redis|Redis]]
+<section class="topic-grid" aria-label="Browse by topic">
 
-## Browse by Topic
+<article class="topic-card">
+  <h3><a href="./Django">Django</a></h3>
+  <p>Internals, DRF, and patterns I rely on.</p>
+</article>
 
-### DevOps & Infrastructure
-- [[docker crash course]] – Complete Docker fundamentals
+<article class="topic-card">
+  <h3><a href="./Golang">Go</a></h3>
+  <p>Idioms, nuances, and resources.</p>
+</article>
 
-### Python & Django
-- [[Django]] – Writings related to Django
-- [[Django internals]] – Deep dive into Django architecture
-- [[Django internals part 2]] – Advanced Django concepts
+<article class="topic-card">
+  <h3><a href="./Flutter">Flutter</a></h3>
+  <p>Cross-platform mobile notes.</p>
+</article>
 
-### Mobile Development
-- [[Flutter]] – Cross-platform mobile development
+<article class="topic-card">
+  <h3><a href="./docker-crash-course">Docker</a></h3>
+  <p>A crash course from first principles.</p>
+</article>
 
-### Backend Technologies
-- [[Golang]] – Go programming essentials
-- [[Redis]] – In-memory data structures
+<article class="topic-card">
+  <h3><a href="./Redis">Redis</a></h3>
+  <p>In-memory data structures.</p>
+</article>
 
-## Connect
-- GitHub: [Krandheer](https://github.com/Krandheer)
-- LinkedIn: [Connect on LinkedIn](https://www.linkedin.com/in/randheer-kumar-gautam-804908120/)
-- Email: [Contact me](mailto:gatuam.randheer.iitd@gmail.com)
+<article class="topic-card">
+  <h3><a href="./Deep-dive-in-Authentication-using-firebase-and-understanding-JWT-working">Auth deep-dive</a></h3>
+  <p>Firebase auth and JWT internals.</p>
+</article>
+
+</section>
+
+<section class="connect-section">
+  <h2>Connect</h2>
+  <ul>
+    <li>GitHub: <a href="https://github.com/Krandheer">Krandheer</a></li>
+    <li>LinkedIn: <a href="https://www.linkedin.com/in/randheer-kumar-gautam-804908120/">Connect on LinkedIn</a></li>
+    <li>Email: <a href="mailto:gatuam.randheer.iitd@gmail.com">Contact me</a></li>
+  </ul>
+</section>

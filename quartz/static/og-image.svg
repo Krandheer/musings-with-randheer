@@ -1,42 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-  <!-- Outer Circle -->
-  <circle cx="200" cy="200" r="180" fill="none" stroke="#6c5ce7" stroke-width="2"/>
-  
-  <!-- Mandala Pattern -->
-  <g transform="translate(200 200)">
-    <!-- Rotating Circuit Pattern -->
-    <g>
-      <path d="M-160,0 L-140,0 M140,0 L160,0" stroke="#a8e6cf" stroke-width="2"/>
-      <path d="M0,-160 L0,-140 M0,140 L0,160" stroke="#a8e6cf" stroke-width="2"/>
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite"/>
-    </g>
-    
-    <!-- Static Geometric Pattern -->
-    <path d="M-100,-100 L100,-100 L100,100 L-100,100 Z" fill="none" stroke="#6c5ce7" stroke-width="2"/>
-    <path d="M-70,-70 L70,-70 L70,70 L-70,70 Z" fill="none" stroke="#6c5ce7" stroke-width="2" transform="rotate(45)"/>
-    
-    <!-- Data Flow Lines -->
-    <g>
-      <path d="M-120,-120 Q0,-50 120,-120" fill="none" stroke="#dfe6e9" stroke-width="1" stroke-dasharray="5,5"/>
-      <path d="M-120,120 Q0,50 120,120" fill="none" stroke="#dfe6e9" stroke-width="1" stroke-dasharray="5,5"/>
-      <animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="15s" repeatCount="indefinite"/>
-    </g>
-    
-    <!-- Center Pattern -->
-    <circle cx="0" cy="0" r="40" fill="none" stroke="#6c5ce7" stroke-width="2"/>
-    <circle cx="0" cy="0" r="20" fill="#a8e6cf">
-      <animate attributeName="r" values="18;22;18" dur="2s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-  
-  <!-- Binary Border -->
-  <text>
-    <textPath href="#circle-text" font-family="Monaco, monospace" font-size="10" fill="#dfe6e9">
-      010101 TECH 101010 RANDHEER 010101 IN 101010
-    </textPath>
-  </text>
-  <path id="circle-text" d="M200,50 A150,150 0 0,1 200,350 A150,150 0 0,1 200,50" fill="none"/>
-  
-  <!-- Site Name -->
-  <text x="200" y="350" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#6c5ce7">tech.randheer.in</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#faf8f8"/>
+      <stop offset="100%" style="stop-color:#e4ecde"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2d5016"/>
+      <stop offset="100%" style="stop-color:#4a7c59"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="8" fill="url(#accent)"/>
+  <text x="80" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#2d5016">🪴 Musings with Randheer</text>
+  <text x="80" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="#3d3d3d">Digital garden · Django · Go · Flutter</text>
+  <text x="80" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#4a7c59">musings.randheer.in</text>
 </svg>

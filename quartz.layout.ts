@@ -4,14 +4,14 @@ import * as Component from "./quartz/components"
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
-  header: [],
-  afterBody: [],
+  header: [Component.SkipLink()],
+  afterBody: [Component.BackToTop()],
   footer: Component.Footer({
     links: {
-      "🐱 GitHub": "https://github.com/Krandheer",
-      "📧 Email": "mailto:gatuam.randheer.iitd@gmail.com",
-      "🌐 LinkedIn": "https://linkedin.com/in/randheer-kumar-gautam-804908120/", // Update this
-      "🌱 Digital Garden": "https://github.com/Krandheer/musings-with-randheer",
+      GitHub: "https://github.com/Krandheer",
+      Email: "mailto:gautam.randheer.iitd@gmail.com",
+      LinkedIn: "https://linkedin.com/in/randheer-kumar-gautam-804908120/",
+      "Digital Garden": "https://github.com/Krandheer/musings-with-randheer",
     },
   }),
 }
@@ -29,7 +29,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search({ enablePreview: true }),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({
+    Component.Explorer({
       folderClickBehavior: "collapse",
       folderDefaultState: "collapsed",
       useSavedState: true,
@@ -39,7 +39,7 @@ export const defaultContentPageLayout: PageLayout = {
         }
         return a.file ? 1 : -1
       }
-    })),
+    }),
   ],
   right: [
     Component.Graph({
@@ -90,11 +90,11 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search({ enablePreview: true }),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({
+    Component.Explorer({
       folderClickBehavior: "collapse",
       folderDefaultState: "collapsed",
       useSavedState: true,
-    })),
+    }),
   ],
   right: [],
 }

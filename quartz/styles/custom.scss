@@ -2,11 +2,10 @@
 @use "./variables.scss" as *;
 
 // ---------------------------------------------------------------------------
-// Sidebar component scroll behavior
-// Each long-form component in the sidebar (Explorer, Recently Growing,
-// Backlinks) gets its own internal scroll. This keeps the surrounding
-// sidebar layout stable while letting users browse long lists in place,
-// instead of scrolling the whole fixed sidebar.
+// Sidebar scroll behavior
+// On desktop each fixed sidebar fits the viewport. The left sidebar keeps
+// title/search pinned and scrolls only the Explorer; the right sidebar
+// (Graph, TOC, Recently Growing, Backlinks) scrolls as one column.
 // ---------------------------------------------------------------------------
 @mixin sidebar-scroll {
   overflow-y: auto;
@@ -36,22 +35,49 @@
     line-height: 1.2;
   }
 
-  #explorer-content {
-    max-height: 28vh;
-    @include sidebar-scroll;
+  // Sidebars are position: fixed, so cap them at the viewport height or
+  // anything past the fold (e.g. Backlinks) becomes unreachable.
+  .page > #quartz-body > .sidebar {
+    max-height: calc(100vh - #{$topSpacing});
+    padding-bottom: 2rem;
+
+    & > * {
+      flex-shrink: 0;
+    }
   }
 
-  .recent-notes > ul.recent-ul {
-    max-height: 22vh;
-    padding-right: 0.25rem;
-    @include sidebar-scroll;
+  // Left: title, search and theme toggle stay put; Explorer fills the
+  // remaining height and scrolls on its own.
+  .page > #quartz-body > .sidebar.left {
+    & > .explorer {
+      flex-shrink: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #explorer-content {
+      flex: 1 1 auto;
+      min-height: 0;
+      padding-right: 0.25rem;
+      @include sidebar-scroll;
+    }
   }
 
-  .backlinks > ul {
-    max-height: 18vh;
-    padding-right: 0.25rem;
+  // Right: one scroll for the whole column instead of a scroll box per
+  // component.
+  .page > #quartz-body > .sidebar.right {
+    // Base styles set wrap; with a capped height that would push overflow
+    // into a hidden second column instead of scrolling.
+    flex-wrap: nowrap;
+    padding-right: 0.5rem;
     @include sidebar-scroll;
   }
+}
+
+// Leave breathing room above a heading when jumping to it from the TOC.
+article :is(h1, h2, h3, h4, h5, h6)[id] {
+  scroll-margin-top: 1.5rem;
 }
 
 // ---------------------------------------------------------------------------

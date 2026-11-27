@@ -69,7 +69,7 @@ const config: QuartzConfig = {
         enableInHtmlEmbed: false,
         enableVideoEmbed: true, // Enable video embedding
       }),
-      Plugin.GitHubFlavoredMarkdown({ linkHeadings: false }),
+      Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents({
         maxDepth: 4,
         minEntries: 2,

@@ -30,6 +30,12 @@
 }
 
 @media all and (min-width: #{$fullPageWidth + 1px}) {
+  // Keep the site title to two lines in the side panel.
+  .sidebar.left > .page-title {
+    font-size: 1.45rem;
+    line-height: 1.2;
+  }
+
   #explorer-content {
     max-height: 28vh;
     @include sidebar-scroll;
@@ -245,6 +251,115 @@ body[data-slug="index"] .article-title {
       border-color: var(--tertiary);
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
     }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Book feature: cover + pitch + actions. Used on the home page and /book.
+// ---------------------------------------------------------------------------
+.book-feature {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 1.25rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 12px;
+  background: var(--highlight);
+
+  .book-feature-cover,
+  .book-feature-cover img {
+    flex: 0 0 auto;
+    width: 120px;
+    margin: 0;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin: 0 0 0.35rem;
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  p {
+    margin: 0 0 0.75rem;
+  }
+
+  .book-pitch {
+    font-size: 1.1rem;
+    color: var(--darkgray);
+  }
+
+  // Override the global internal-link pill styling for titles and buttons.
+  h2 a,
+  h2 a.internal {
+    color: var(--dark);
+    background: transparent;
+    padding: 0;
+  }
+
+  h2 a:hover {
+    color: var(--secondary);
+  }
+}
+
+.book-feature--page .book-feature-cover {
+  width: 150px;
+}
+
+.book-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+
+  a.btn,
+  a.btn.internal {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--secondary);
+    background: var(--secondary);
+    color: var(--light);
+    font-weight: $semiBoldWeight;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    text-decoration: none;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease;
+  }
+
+  a.btn-ghost,
+  a.btn-ghost.internal {
+    background: transparent;
+    color: var(--secondary);
+  }
+
+  a.btn:hover {
+    background: var(--tertiary);
+    border-color: var(--tertiary);
+    color: var(--light);
+  }
+
+  // Quartz appends an external-link icon; it clutters a button.
+  .external-icon {
+    display: none;
+  }
+}
+
+@media all and (max-width: $mobileBreakpoint) {
+  .book-feature {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 

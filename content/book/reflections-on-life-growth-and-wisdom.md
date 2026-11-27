@@ -4,9 +4,14 @@ description: Read my book free online or download the PDF — and support the wo
 date: 2024-01-15
 ---
 
-![[book.png|200]]
-
-Ancient wisdom meets modern challenges in this practical guide to living a well-lived life.
+<section class="book-feature book-feature--page">
+  <img class="book-feature-cover" src="./cover.png" alt="Cover of Reflections on Life, Growth, and Wisdom" />
+  <div>
+    <p class="eyebrow">By Randheer Kumar Gautam · 150 pages · free to read</p>
+    <p class="book-pitch">Ancient wisdom meets modern challenges in this practical guide to living a well-lived life.</p>
+    <p class="book-actions"><a class="btn" href="#read">Read online</a><a class="btn btn-ghost" href="./reflections-on-life-growth-and-wisdom.pdf">Download PDF</a><a class="btn btn-ghost" href="https://dakshana.gumroad.com/l/bnejzg">Support · ₹249</a></p>
+  </div>
+</section>
 
 What does Marcus Aurelius have to teach us about managing anxiety in the digital age? How can understanding compound interest transform not just your finances, but your entire approach to life? Why do 90% of people struggle with the same fundamental challenges—and what can we learn from those who don't?
 
@@ -29,7 +34,7 @@ For anyone seeking to think more clearly, act more purposefully, and live more i
 
 The full book is free to read below, or [download the PDF](./reflections-on-life-growth-and-wisdom.pdf).
 
-<div class="book-reader">
+<div class="book-reader" id="read">
 
 ![[reflections-on-life-growth-and-wisdom.pdf]]
 

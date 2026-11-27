@@ -2,7 +2,7 @@
 tags:
   - "#django"
   - sql
-  - form-valiation
+  - form-validation
 ---
 
 ### Django queries in sql formats

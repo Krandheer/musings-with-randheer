@@ -43,6 +43,11 @@ lastmod: 2026-01-18
   <p>Firebase auth and JWT internals.</p>
 </article>
 
+<article class="topic-card">
+  <h3><a href="./book">📖 My book</a></h3>
+  <p>Reflections on Life, Growth, and Wisdom — free to read.</p>
+</article>
+
 </section>
 
 <section class="connect-section">
@@ -50,6 +55,6 @@ lastmod: 2026-01-18
   <ul>
     <li>GitHub: <a href="https://github.com/Krandheer">Krandheer</a></li>
     <li>LinkedIn: <a href="https://www.linkedin.com/in/randheer-kumar-gautam-804908120/">Connect on LinkedIn</a></li>
-    <li>Email: <a href="mailto:gatuam.randheer.iitd@gmail.com">Contact me</a></li>
+    <li>Email: <a href="mailto:gautam.randheer.iitd@gmail.com">Contact me</a></li>
   </ul>
 </section>

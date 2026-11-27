@@ -248,6 +248,13 @@ body[data-slug="index"] .article-title {
   }
 }
 
+// Book pages are portrait, so the default 16:9 PDF embed is far too short.
+.book-reader iframe.pdf {
+  aspect-ratio: auto;
+  height: 85vh;
+  border: 1px solid var(--lightgray);
+}
+
 .connect-section {
   margin-top: 2.5rem;
   padding-top: 1.5rem;

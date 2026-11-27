@@ -4,8 +4,9 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 import { classNames } from "../util/lang"
 
 // Experimental "HUD mode" theme switch. The button also carries the HUD's
-// screen overlay (status strip, frame corners, scan line, boot screen), which
-// stays hidden unless HUD mode is on. The look lives in styles/hud.scss.
+// screen overlay (status strip, frame corners, scan line, target reticle,
+// boot screen), which stays hidden unless HUD mode is on. The look lives in
+// styles/hud.scss.
 const HudToggle: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
   return (
     <>
@@ -27,6 +28,9 @@ const HudToggle: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
             <span class="hud-status-dot" />
             Systems online
           </span>
+          <span class="hud-status-section">
+            ▸ <span data-hud-section>Standby</span>
+          </span>
           <span>
             BLR <span data-hud-clock>--:--:--</span>
             <span class="hud-status-sep">/</span>
@@ -39,6 +43,7 @@ const HudToggle: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
         <span class="hud-corner hud-corner-br" />
         <div class="hud-scan" />
       </div>
+      <div class="hud-reticle" aria-hidden="true" />
       <div class="hud-boot" aria-hidden="true">
         <div class="hud-boot-sweep" />
         <p class="hud-boot-text">
@@ -76,6 +81,7 @@ HudToggle.css = `
 }
 
 .hud-overlay,
+.hud-reticle,
 .hud-boot {
   display: none;
 }

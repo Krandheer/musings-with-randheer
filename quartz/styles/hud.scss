@@ -32,25 +32,23 @@ $monoFont: "Share Tech Mono", "IBM Plex Mono", monospace;
   --titleFont: "Rajdhani", sans-serif;
 }
 
-// Gold corner brackets drawn with background gradients, over a dark glass panel.
-@mixin hud-panel {
-  border: 1px solid rgba(94, 231, 255, 0.18);
-  border-radius: 4px;
-  background-color: rgba(10, 16, 28, 0.78);
+// Corner brackets drawn with background gradients (no extra elements needed).
+@mixin hud-corners($length: 16px, $thickness: 2px, $color: $gold) {
   background-image:
-    linear-gradient($gold, $gold), linear-gradient($gold, $gold), linear-gradient($gold, $gold),
-    linear-gradient($gold, $gold), linear-gradient($gold, $gold), linear-gradient($gold, $gold),
-    linear-gradient($gold, $gold), linear-gradient($gold, $gold);
+    linear-gradient($color, $color), linear-gradient($color, $color),
+    linear-gradient($color, $color), linear-gradient($color, $color),
+    linear-gradient($color, $color), linear-gradient($color, $color),
+    linear-gradient($color, $color), linear-gradient($color, $color);
   background-repeat: no-repeat;
   background-size:
-    16px 2px,
-    2px 16px,
-    16px 2px,
-    2px 16px,
-    16px 2px,
-    2px 16px,
-    16px 2px,
-    2px 16px;
+    $length $thickness,
+    $thickness $length,
+    $length $thickness,
+    $thickness $length,
+    $length $thickness,
+    $thickness $length,
+    $length $thickness,
+    $thickness $length;
   background-position:
     top left,
     top left,
@@ -60,6 +58,14 @@ $monoFont: "Share Tech Mono", "IBM Plex Mono", monospace;
     bottom left,
     bottom right,
     bottom right;
+}
+
+// Gold-bracketed dark glass panel.
+@mixin hud-panel {
+  border: 1px solid rgba(94, 231, 255, 0.18);
+  border-radius: 4px;
+  background-color: rgba(10, 16, 28, 0.78);
+  @include hud-corners;
 }
 
 @mixin hud-label {
@@ -129,6 +135,43 @@ $monoFont: "Share Tech Mono", "IBM Plex Mono", monospace;
   }
   to {
     transform: translateY(110vh);
+  }
+}
+
+@keyframes hud-crt-off {
+  0% {
+    transform: none;
+    filter: none;
+  }
+  45% {
+    transform: scaleY(0.012);
+    filter: brightness(2.2);
+  }
+  100% {
+    transform: scale(0, 0.012);
+    filter: brightness(3);
+    opacity: 0;
+  }
+}
+
+@keyframes hud-glitch {
+  0%,
+  92%,
+  100% {
+    transform: none;
+    text-shadow: none;
+  }
+  94% {
+    transform: translateX(-2px);
+    text-shadow:
+      2px 0 rgba(94, 231, 255, 0.8),
+      -2px 0 rgba(230, 57, 70, 0.8);
+  }
+  96% {
+    transform: translateX(2px);
+    text-shadow:
+      -2px 0 rgba(94, 231, 255, 0.8),
+      2px 0 rgba(230, 57, 70, 0.8);
   }
 }
 
@@ -517,6 +560,151 @@ $monoFont: "Share Tech Mono", "IBM Plex Mono", monospace;
     animation: hud-scan 9s linear infinite;
   }
 
+  // Middle of the status strip: which numbered section you're reading.
+  .hud-status-section {
+    max-width: 40vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $gold;
+  }
+
+  // Target reticle: trails the cursor, locks on to links, buttons and cards.
+  .hud-reticle {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9990;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    opacity: 0;
+    @include hud-corners(8px, 2px, $gold);
+    transition:
+      transform 0.09s ease-out,
+      width 0.16s ease,
+      height 0.16s ease,
+      opacity 0.2s ease;
+
+    // Centre dot, shown while free-roaming.
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      margin: -2px 0 0 -2px;
+      border-radius: 50%;
+      background: $cyan;
+      box-shadow: 0 0 6px $cyan;
+      transition: opacity 0.15s ease;
+    }
+
+    &.hud-reticle-active {
+      opacity: 0.85;
+    }
+
+    &.hud-reticle-locked {
+      @include hud-corners(12px, 2px, $gold);
+      filter: drop-shadow(0 0 4px rgba(255, 194, 75, 0.7));
+
+      &::after {
+        opacity: 0;
+      }
+    }
+
+    @media all and ($mobile), (hover: none) {
+      display: none;
+    }
+  }
+
+  // Power-down: the page collapses to a bright line and goes dark.
+  &[data-hud-shutdown] {
+    body {
+      background: #000;
+      overflow: hidden;
+    }
+
+    .page {
+      transform-origin: 50% var(--hud-crt-y, 50vh);
+      animation: hud-crt-off 0.55s ease-in forwards;
+    }
+  }
+
+  // Search as a terminal panel.
+  .search > .search-container {
+    background: rgba(3, 5, 10, 0.55);
+
+    & > .search-space > * {
+      border-color: rgba(94, 231, 255, 0.28);
+      border-radius: 4px;
+      background-color: rgba(10, 16, 28, 0.97);
+      box-shadow:
+        0 0 0 1px rgba(94, 231, 255, 0.08),
+        0 0 40px rgba(94, 231, 255, 0.14);
+    }
+
+    & > .search-space > input {
+      @include hud-corners(14px, 2px, $gold);
+      font-family: $monoFont;
+      letter-spacing: 0.06em;
+      color: $gold;
+      caret-color: $cyan;
+
+      &::placeholder {
+        color: rgba(94, 231, 255, 0.55);
+        text-transform: uppercase;
+      }
+    }
+
+    .result-card {
+      border-left: 2px solid transparent;
+
+      &:hover,
+      &.focus {
+        border-left-color: $gold;
+        background: rgba(255, 194, 75, 0.08);
+      }
+    }
+  }
+
+  // Link previews as bracketed panels.
+  .popover > .popover-inner {
+    @include hud-panel;
+    background-color: rgba(10, 16, 28, 0.97);
+    box-shadow: 0 0 36px rgba(94, 231, 255, 0.14);
+  }
+
+  // Current note in the Explorer gets a marker.
+  .explorer-content ul li > a.active::before {
+    content: "▸ ";
+    color: $gold;
+  }
+
+  // Sign-off and a "signal lost" 404.
+  footer::before {
+    content: "// End of transmission";
+    display: block;
+    margin-bottom: 0.75rem;
+    @include hud-label;
+    font-size: 0.72rem;
+    color: var(--gray);
+  }
+
+  body[data-slug="404"] article h1 {
+    color: $red;
+    animation: hud-glitch 3s steps(1) infinite;
+
+    &::after {
+      content: " // Signal lost";
+      @include hud-label;
+      font-size: 0.45em;
+      color: $cyan;
+    }
+  }
+
   // Power-up screen, shown briefly when HUD mode is switched on.
   &[data-hud-boot] .hud-boot {
     display: flex;
@@ -565,7 +753,8 @@ $monoFont: "Share Tech Mono", "IBM Plex Mono", monospace;
 
     .hero-rings circle,
     .hud-scan,
-    .hud-status-dot {
+    .hud-status-dot,
+    body[data-slug="404"] article h1 {
       animation: none;
     }
 

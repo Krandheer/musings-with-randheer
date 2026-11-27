@@ -2,9 +2,9 @@ import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import { QuartzPluginData } from "./quartz/plugins/vfile"
 
-// Folder index pages (and the home page) are navigation, not notes, so keep
-// them out of "recent notes" style lists.
-const isNote = (f: QuartzPluginData) => !f.slug?.endsWith("index")
+// Folder index pages (and the home page) are navigation, not notes, and the
+// 404 page isn't content; keep them out of note lists, comments, etc.
+const isNote = (f: QuartzPluginData) => !f.slug?.endsWith("index") && f.slug !== "404"
 
 // Book chapters are reached from the book's contents page; listing 23 of them
 // as "recent" would crowd out the garden's notes.

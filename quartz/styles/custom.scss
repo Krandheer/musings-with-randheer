@@ -341,6 +341,13 @@ body[data-slug="index"] .article-title {
   }
 }
 
+// Card and book-block titles are headings, so Quartz gives them a hover
+// "link to this heading" icon; it's noise on a card.
+.topic-card h3 a[role="anchor"],
+.book-feature h2 a[role="anchor"] {
+  display: none;
+}
+
 .book-feature--page .book-feature-cover {
   width: 150px;
 }

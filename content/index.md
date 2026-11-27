@@ -47,11 +47,11 @@ lastmod: 2026-01-18
 </section>
 
 <section class="book-feature" aria-label="My book">
-  <a class="book-feature-cover" href="./book/reflections-on-life-growth-and-wisdom"><img src="./book/cover.png" alt="Cover of Reflections on Life, Growth, and Wisdom" /></a>
+  <a class="book-feature-cover" href="./book/reflections-on-life-growth-and-wisdom/"><img src="./book/cover.png" alt="Cover of Reflections on Life, Growth, and Wisdom" /></a>
   <div>
     <p class="eyebrow">My book · free to read</p>
-    <h2><a href="./book/reflections-on-life-growth-and-wisdom">Reflections on Life, Growth, and Wisdom</a></h2>
+    <h2><a href="./book/reflections-on-life-growth-and-wisdom/">Reflections on Life, Growth, and Wisdom</a></h2>
     <p>Stoicism, habits, investing, and mental models — 18 chapters distilled from years of personal newsletters.</p>
-    <p class="book-actions"><a class="btn" href="./book/reflections-on-life-growth-and-wisdom">Read online</a><a class="btn btn-ghost" href="./book/reflections-on-life-growth-and-wisdom.pdf">Download PDF</a></p>
+    <p class="book-actions"><a class="btn" href="./book/reflections-on-life-growth-and-wisdom/">Read online</a><a class="btn btn-ghost" href="./book/reflections-on-life-growth-and-wisdom.pdf">Download PDF</a></p>
   </div>
 </section>

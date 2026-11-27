@@ -1,7 +1,9 @@
 ---
 title: "Django Internals"
 tags:
-  - "#django"
+  - django
+  - python
+  - orm
   - sql
   - form-validation
 date: 2024-10-13

@@ -1,5 +1,9 @@
 ---
 title: "Docker Crash Course: From Basics to Deployment"
+tags:
+  - docker
+  - devops
+  - backend
 date: 2024-10-09
 aliases:
   - docker-crash-course

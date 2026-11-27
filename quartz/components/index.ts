@@ -25,6 +25,8 @@ import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import SkipLink from "./SkipLink"
 import BackToTop from "./BackToTop"
+import Newsletter from "./Newsletter"
+import ExploreTopics from "./ExploreTopics"
 
 export {
   ArticleTitle,
@@ -54,4 +56,6 @@ export {
   ConditionalRender,
   SkipLink,
   BackToTop,
+  Newsletter,
+  ExploreTopics,
 }

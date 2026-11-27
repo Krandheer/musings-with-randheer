@@ -1,7 +1,9 @@
 ---
 title: "Django Internals, Part 2"
 tags:
-  - "#django"
+  - django
+  - python
+  - orm
 date: 2024-10-17
 ---
 ### Content type

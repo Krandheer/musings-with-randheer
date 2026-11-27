@@ -6,11 +6,11 @@ socialImage: https://musings.randheer.in/book/cover.png
 ---
 
 <section class="book-feature book-feature--page">
-  <img class="book-feature-cover" src="./cover.png" alt="Cover of Reflections on Life, Growth, and Wisdom" />
+  <img class="book-feature-cover" src="/book/cover.png" alt="Cover of Reflections on Life, Growth, and Wisdom" />
   <div>
     <p class="eyebrow">By Randheer Kumar Gautam · 150 pages · free to read</p>
     <p class="book-pitch">Ancient wisdom meets modern challenges in this practical guide to living a well-lived life.</p>
-    <p class="book-actions"><a class="btn" href="#read">Read online</a><a class="btn btn-ghost" href="./reflections-on-life-growth-and-wisdom.pdf">Download PDF</a><a class="btn btn-ghost" href="https://dakshana.gumroad.com/l/bnejzg">Support · ₹249</a></p>
+    <p class="book-actions"><a class="btn" href="./00-preface">Start reading</a><a class="btn btn-ghost" href="/book/reflections-on-life-growth-and-wisdom.pdf">Download PDF</a><a class="btn btn-ghost" href="https://dakshana.gumroad.com/l/bnejzg">Support · ₹249</a></p>
   </div>
 </section>
 
@@ -31,15 +31,54 @@ This book doesn't offer quick fixes or generic advice. Instead, it presents fram
 
 For anyone seeking to think more clearly, act more purposefully, and live more intentionally.
 
-## 📖 Read the book
+## 📖 Contents
 
-The full book is free to read below, or [download the PDF](./reflections-on-life-growth-and-wisdom.pdf).
+Read it here chapter by chapter, or [download the PDF](/book/reflections-on-life-growth-and-wisdom.pdf).
 
-<div class="book-reader" id="read">
+- [Preface](./00-preface)
 
-![[reflections-on-life-growth-and-wisdom.pdf]]
+### Part 1 · Philosophy & Inner Wisdom
 
-</div>
+- [Chapter 1: Lessons from Marcus Aurelius and Stoicism](./01-lessons-from-marcus-aurelius-and-stoicism)
+- [Chapter 2: Finding Meaning in Life and Death](./02-finding-meaning-in-life-and-death)
+- [Chapter 3: The Art of Living Without Worry](./03-the-art-of-living-without-worry)
+
+### Part 2 · Personal Development & Growth
+
+- [Chapter 4: Building Productive Habits](./04-building-productive-habits)
+- [Chapter 5: Overcoming Procrastination and Laziness](./05-overcoming-procrastination-and-laziness)
+- [Chapter 6: The Journey of Self-Improvement](./06-the-journey-of-self-improvement)
+
+### Part 3 · Financial Wisdom & Investment
+
+- [Chapter 7: Understanding Value Investing](./07-understanding-value-investing)
+- [Chapter 8: Financial Awareness and Wealth Building](./08-financial-awareness-and-wealth-building)
+- [Chapter 9: Lessons from Great Investors](./09-lessons-from-great-investors)
+
+### Part 4 · Leadership & Entrepreneurship
+
+- [Chapter 10: Startup Lessons and Leadership Principles](./10-startup-lessons-and-leadership-principles)
+- [Chapter 11: What Not to Do as a Founder](./11-what-not-to-do-as-a-founder)
+- [Chapter 12: Values and Integrity in Business](./12-values-and-integrity-in-business)
+
+### Part 5 · Mental Models & Decision Making
+
+- [Chapter 13: Probabilistic Thinking and Mental Models](./13-probabilistic-thinking-and-mental-models)
+- [Chapter 14: Career Decisions and Life Choices](./14-career-decisions-and-life-choices)
+- [Chapter 15: Avoiding Consistent Stupidity](./15-avoiding-consistent-stupidity)
+
+### Part 6 · Life Lessons & Practical Wisdom
+
+- [Chapter 16: Living a Life of No Regrets](./16-living-a-life-of-no-regrets)
+- [Chapter 17: Happiness and Emotional Intelligence](./17-happiness-and-emotional-intelligence)
+- [Chapter 18: The Future and Technological Change](./18-the-future-and-technological-change)
+
+### Afterword
+
+- [Conclusion](./19-conclusion)
+- [Acknowledgments](./20-acknowledgments)
+- [Further Reading](./21-further-reading)
+- [About the Author](./22-about-the-author)
 
 ## 💚 Support the work
 

@@ -6,6 +6,26 @@ import { QuartzPluginData } from "./quartz/plugins/vfile"
 // them out of "recent notes" style lists.
 const isNote = (f: QuartzPluginData) => !f.slug?.endsWith("index")
 
+// Book chapters are reached from the book's contents page; listing 23 of them
+// as "recent" would crowd out the garden's notes.
+const isRecentNote = (f: QuartzPluginData) => isNote(f) && !f.slug?.startsWith("book/")
+
+const SUBSTACK_URL = "https://randheer1.substack.com"
+
+// Giscus comments, stored as GitHub Discussions on the garden's repo.
+const comments = Component.Comments({
+  provider: "giscus",
+  options: {
+    repo: "Krandheer/musings-with-randheer",
+    repoId: "R_kgDOMqdqmA",
+    category: "Announcements",
+    categoryId: "DIC_kwDOMqdqmM4DMHhA",
+    mapping: "pathname",
+    reactionsEnabled: true,
+    inputPosition: "top",
+  },
+})
+
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
@@ -16,25 +36,20 @@ export const sharedPageComponents: SharedLayout = {
         title: "🌱 Latest notes",
         limit: 6,
         showTags: true,
-        filter: isNote,
+        filter: isRecentNote,
       }),
       condition: (page) => page.fileData.slug === "index",
     }),
-    // Giscus comments, stored as GitHub Discussions on the garden's repo.
+    Component.ConditionalRender({
+      component: Component.Newsletter({ url: SUBSTACK_URL }),
+      condition: (page) =>
+        isNote(page.fileData) ||
+        page.fileData.slug === "index" ||
+        page.fileData.slug === "book/reflections-on-life-growth-and-wisdom/index",
+    }),
     // Only on notes: not the home page, folder pages, or tag pages.
     Component.ConditionalRender({
-      component: Component.Comments({
-        provider: "giscus",
-        options: {
-          repo: "Krandheer/musings-with-randheer",
-          repoId: "R_kgDOMqdqmA",
-          category: "Announcements",
-          categoryId: "DIC_kwDOMqdqmM4DMHhA",
-          mapping: "pathname",
-          reactionsEnabled: true,
-          inputPosition: "top",
-        },
-      }),
+      component: comments,
       condition: (page) => isNote(page.fileData) && !page.fileData.slug?.startsWith("tags/"),
     }),
     Component.BackToTop(),
@@ -44,6 +59,7 @@ export const sharedPageComponents: SharedLayout = {
       GitHub: "https://github.com/Krandheer",
       Email: "mailto:gautam.randheer.iitd@gmail.com",
       LinkedIn: "https://linkedin.com/in/randheer-kumar-gautam-804908120/",
+      Newsletter: SUBSTACK_URL,
       RSS: "https://musings.randheer.in/index.xml",
     },
   }),
@@ -66,6 +82,19 @@ const leftSidebar = [
     folderClickBehavior: "collapse",
     folderDefaultState: "collapsed",
     useSavedState: true,
+    sortFn: (a, b) => {
+      // Book chapters are named "NN-…" so they sort in reading order.
+      if (/^\d+-/.test(a.slugSegment) && /^\d+-/.test(b.slugSegment)) {
+        return a.slugSegment.localeCompare(b.slugSegment)
+      }
+      if (a.isFolder !== b.isFolder) {
+        return a.isFolder ? -1 : 1
+      }
+      return a.displayName.localeCompare(b.displayName, undefined, {
+        numeric: true,
+        sensitivity: "base",
+      })
+    },
   }),
 ]
 
@@ -82,44 +111,20 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   left: leftSidebar,
   right: [
-    Component.Graph({
-      localGraph: {
-        drag: true,
-        zoom: true,
-        depth: 2,
-        scale: 1.1,
-        repelForce: 0.5,
-        centerForce: 0.3,
-        linkDistance: 30,
-        fontSize: 0.6,
-        opacityScale: 1,
-        showTags: true,
-        removeTags: [],
-        focusOnHover: false,
-      },
-      globalGraph: {
-        drag: true,
-        zoom: true,
-        depth: -1,
-        scale: 0.9,
-        repelForce: 0.5,
-        centerForce: 0.3,
-        linkDistance: 30,
-        fontSize: 0.6,
-        opacityScale: 1,
-        showTags: true,
-        removeTags: [],
-        focusOnHover: true,
-      },
-    }),
     Component.DesktopOnly(Component.TableOfContents()),
+    // The home page has no TOC, so offer a way in by topic instead. The book
+    // is already featured in the page body.
+    Component.ConditionalRender({
+      component: Component.ExploreTopics({ title: "🧭 Explore topics", exclude: ["book"] }),
+      condition: (page) => page.fileData.slug === "index",
+    }),
     // The home page already lists latest notes in its body.
     Component.ConditionalRender({
       component: Component.RecentNotes({
         title: "🌱 Recently Growing",
         limit: 5,
         showTags: true,
-        filter: isNote,
+        filter: isRecentNote,
       }),
       condition: (page) => page.fileData.slug !== "index",
     }),

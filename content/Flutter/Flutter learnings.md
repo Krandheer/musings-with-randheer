@@ -2,6 +2,7 @@
 title: "Flutter Learnings"
 tags:
   - flutter
+  - mobile
 date: 2024-11-18
 ---
 When you are in initState function of StateFul widget then we cautious of not doing anything that may be blocking runtime.  

@@ -1,7 +1,7 @@
 ---
 title: Golang Nuances
 tags:
-  - Golang
+  - golang
 date: 2024-11-01
 ---
 

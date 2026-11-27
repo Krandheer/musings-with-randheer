@@ -1,5 +1,7 @@
 ---
 title: "Python"
+tags:
+  - python
 date: 2024-11-24
 ---
 

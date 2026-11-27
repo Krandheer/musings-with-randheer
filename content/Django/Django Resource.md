@@ -1,7 +1,8 @@
 ---
 title: Django Resources
 tags:
-  - "#django"
+  - django
+  - resources
 date: 2024-10-28
 ---
 

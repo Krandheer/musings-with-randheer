@@ -1,7 +1,9 @@
 ---
 title: "Flutter Resources"
 tags:
-  - "#flutter"
+  - flutter
+  - mobile
+  - resources
 date: 2024-10-30
 ---
 ### For flutter WebView:  

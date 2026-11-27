@@ -1,7 +1,8 @@
 ---
 title: Golang Resources
 tags:
-  - Golang
+  - golang
+  - resources
 date: 2024-11-03
 ---
 ### Books:

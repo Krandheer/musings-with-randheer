@@ -1,10 +1,13 @@
 ---
 title: "Asynchronous Programming in JavaScript & TypeScript"
+tags:
+  - javascript
+  - typescript
+  - async
 date: 2026-05-06
 aliases:
   - asynchronous-programming-in-javascript-typescript
 ---
-#async-await
 Promise starts running as soon as it created, await is not needed for starting the promise, await resolves the promises.
 
 And when you do await and then that function itself in which await is called is suspended for the moment and main thread is free to handle anything else, until event loop reschedule this suspended function.

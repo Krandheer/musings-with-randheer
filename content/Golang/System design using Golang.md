@@ -1,5 +1,8 @@
 ---
 title: "System Design Using Go"
+tags:
+  - golang
+  - system-design
 date: 2026-03-15
 aliases:
   - System-design-using-Golang

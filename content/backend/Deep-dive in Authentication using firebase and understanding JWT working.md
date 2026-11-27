@@ -1,10 +1,11 @@
 ---
 title: "Deep Dive: Firebase Authentication and How JWTs Work"
 tags:
-  - Golang
-  - Authentication
-  - JWT
-  - Firebase
+  - authentication
+  - jwt
+  - firebase
+  - golang
+  - flutter
 date: 2025-08-15
 aliases:
   - Deep-dive-in-Authentication-using-firebase-and-understanding-JWT-working

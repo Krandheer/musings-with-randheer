@@ -1,5 +1,9 @@
 ---
 title: "Redis"
+tags:
+  - redis
+  - caching
+  - backend
 date: 2025-08-13
 aliases:
   - Redis

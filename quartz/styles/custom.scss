@@ -29,11 +29,32 @@
   }
 }
 
+.page-title a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--dark);
+}
+
+.page-title-mark {
+  flex: 0 0 auto;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin: 0;
+  border-radius: 0.45rem;
+}
+
 @media all and not ($mobile) {
-  // Keep the site title to two lines in the side panel.
+  // Logo lockup: the mark spans the title's two lines in the side panel.
   .sidebar.left > .page-title {
-    font-size: 1.45rem;
+    font-size: 1.25rem;
     line-height: 1.2;
+  }
+
+  .sidebar.left .page-title-mark {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.65rem;
   }
 
   .explorer-content {
@@ -77,8 +98,13 @@
 
 @media all and ($mobile) {
   .sidebar.left > .page-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     line-height: 1.2;
+  }
+
+  .page-title-mark {
+    width: 1.6rem;
+    height: 1.6rem;
   }
 }
 
@@ -96,7 +122,33 @@ body[data-slug="index"] .article-title {
 }
 
 .hero {
-  margin: 1rem 0 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin: 1.5rem 0 3rem;
+
+  .hero-avatar {
+    flex: 0 0 auto;
+    width: 112px;
+    height: 112px;
+    margin: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow:
+      0 0 0 3px var(--light),
+      0 0 0 5px var(--tertiary);
+  }
+
+  @media all and ($mobile) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    .hero-avatar {
+      width: 80px;
+      height: 80px;
+    }
+  }
 
   .eyebrow {
     text-transform: uppercase;
@@ -130,12 +182,11 @@ body[data-slug="index"] .article-title {
     margin: 1rem 0 0;
     font-weight: $semiBoldWeight;
 
-    a,
-    a.internal {
+    a:is(.internal, .external) {
       color: var(--secondary);
       background: transparent;
-      border-left: none;
       padding: 0;
+      text-decoration: none;
     }
 
     .external-icon {
@@ -153,6 +204,9 @@ body[data-slug="index"] .article-title {
   list-style: none;
 
   .topic-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
     margin: 0;
     padding: 1.1rem 1.25rem;
     border: 1px solid var(--lightgray);
@@ -163,19 +217,32 @@ body[data-slug="index"] .article-title {
       border-color 0.15s ease,
       box-shadow 0.15s ease;
 
+    .topic-icon {
+      width: 2.1rem;
+      height: 2.1rem;
+      margin-bottom: 0.35rem;
+      padding: 0.45rem;
+      box-sizing: border-box;
+      border-radius: 0.6rem;
+      background: var(--highlight);
+      fill: none;
+      stroke: var(--secondary);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     h3 {
-      margin: 0 0 0.4rem;
+      margin: 0;
       font-size: 1.05rem;
     }
 
     // Override the global `article a.internal` styling so card titles
     // render as plain text links, not as highlighted internal-link pills.
     h3 a,
-    h3 a.internal,
-    h3 a.internal:not(:has(> img)) {
+    h3 a.internal {
       color: var(--dark);
       background: transparent;
-      border-left: none;
       border-radius: 0;
       padding: 0;
       text-decoration: none;
@@ -320,12 +387,36 @@ body[data-slug="book/reflections-on-life-growth-and-wisdom/index"] .page-listing
   display: none;
 }
 
-// Plain links for the contents list; the highlighted internal-link style is
-// too heavy for a table of contents.
-body[data-slug="book/reflections-on-life-growth-and-wisdom/index"] article li > a.internal {
-  background: transparent;
-  border-left: none;
-  padding: 0;
+
+// ---------------------------------------------------------------------------
+// Book chapters read like a book: serif text in a narrower column, and a
+// quiet epigraph instead of the boxed blockquote used in notes.
+// ---------------------------------------------------------------------------
+body[data-slug^="book/reflections-on-life-growth-and-wisdom/"]:not([data-slug$="/index"]) article {
+  max-width: 40rem;
+  font-family: "Literata", Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.75;
+
+  :is(p, li) {
+    font-family: inherit;
+  }
+
+  blockquote {
+    background: transparent;
+    border-left: 2px solid var(--tertiary);
+    border-radius: 0;
+    padding: 0.1rem 0 0.1rem 1.25rem;
+
+    p {
+      color: var(--darkgray);
+      font-size: 1.15rem;
+    }
+  }
+
+  img {
+    border-radius: 8px;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -476,17 +567,6 @@ body[data-slug="book/reflections-on-life-growth-and-wisdom/index"] article li > 
 }
 
 // ---------------------------------------------------------------------------
-// Page title gradient (theme-aware)
-// ---------------------------------------------------------------------------
-.page-title h1 {
-  background: linear-gradient(135deg, var(--secondary), var(--tertiary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: var(--secondary);
-}
-
-// ---------------------------------------------------------------------------
 // Blockquotes
 // ---------------------------------------------------------------------------
 blockquote {
@@ -503,20 +583,80 @@ blockquote {
 }
 
 // ---------------------------------------------------------------------------
-// Internal links — subtle highlight (no emoji pseudo-elements)
+// Links in running text: a thin underline that firms up on hover, instead of
+// Quartz's highlighted pill. Buttons and tag pills keep their own styles.
 // ---------------------------------------------------------------------------
-article a.internal:not(:has(> img)) {
-  background-color: var(--highlight);
-  border-left: 2px solid var(--tertiary);
-  padding: 0.1rem 0.35rem;
-  border-radius: 0 4px 4px 0;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+article :where(p, li, td, blockquote, dd) > a:is(.internal, .external):not(.btn, .tag-link) {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, var(--secondary) 40%, transparent);
+  transition: text-decoration-color 0.15s ease;
 
   &:hover {
-    background-color: color-mix(in srgb, var(--tertiary) 25%, transparent);
-    text-decoration: underline;
+    color: var(--secondary);
+    text-decoration-color: var(--secondary);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Green is the accent, not the default: navigation lists use the text colour
+// and turn green on hover or when they're the current page.
+// ---------------------------------------------------------------------------
+.folder-container div > a,
+.folder-container div > button span,
+.folder-icon {
+  color: var(--dark);
+}
+
+.folder-container div > a:hover {
+  color: var(--secondary);
+}
+
+.recent-notes .section > .desc > h3 > a {
+  color: var(--dark);
+
+  &:hover {
+    color: var(--secondary);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Headings: clearer steps between levels, and more space above a section.
+// ---------------------------------------------------------------------------
+article {
+  h2 {
+    font-size: 1.6rem;
+    margin: 2.4rem 0 0.75rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    margin: 2rem 0 0.6rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    margin: 1.6rem 0 0.5rem;
+  }
+
+  :is(h2, h3, h4):first-child {
+    margin-top: 0.5rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Table of contents: readable at rest; sections you've reached at full
+// strength.
+// ---------------------------------------------------------------------------
+ul.toc-content.overflow > li > a {
+  opacity: 0.6;
+
+  &.in-view {
+    opacity: 1;
   }
 }
 

@@ -1,5 +1,7 @@
 @use "./base.scss";
 @use "./variables.scss" as *;
+// Experimental opt-in theme; see the file header to remove it.
+@use "./hud.scss";
 
 // ---------------------------------------------------------------------------
 // Sidebar scroll behavior
@@ -126,6 +128,16 @@ body[data-slug="index"] .article-title {
   align-items: center;
   gap: 1.75rem;
   margin: 1.5rem 0 3rem;
+
+  .hero-portrait {
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  .hero-rings {
+    display: none;
+  }
 
   .hero-avatar {
     flex: 0 0 auto;

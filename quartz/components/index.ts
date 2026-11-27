@@ -27,6 +27,7 @@ import SkipLink from "./SkipLink"
 import BackToTop from "./BackToTop"
 import Newsletter from "./Newsletter"
 import ExploreTopics from "./ExploreTopics"
+import HudToggle from "./HudToggle"
 
 export {
   ArticleTitle,
@@ -58,4 +59,5 @@ export {
   BackToTop,
   Newsletter,
   ExploreTopics,
+  HudToggle,
 }

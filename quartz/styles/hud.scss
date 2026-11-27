@@ -1,0 +1,576 @@
+@use "./variables.scss" as *;
+
+// ===========================================================================
+// HUD mode (experimental)
+// An armour-HUD look: hot-rod red and gold on a dark visor, cyan "reactor"
+// glow, corner-bracket panels and display type. Toggled by the HudToggle
+// button, which sets data-hud="on" on <html>. To remove the experiment,
+// delete this file, its @use in custom.scss, and the HudToggle component.
+// ===========================================================================
+
+$hud: ':root[data-hud="on"]';
+$red: #e63946;
+$gold: #ffc24b;
+$cyan: #5ee7ff;
+$monoFont: "Share Tech Mono", "IBM Plex Mono", monospace;
+
+// Palette and type. The [saved-theme] variant outranks Quartz's light/dark
+// variables, so HUD mode looks the same whichever theme is saved.
+#{$hud},
+#{$hud}[saved-theme] {
+  color-scheme: dark;
+  --light: #070a12;
+  --lightgray: #1d2636;
+  --gray: #8391a8;
+  --darkgray: #d3dae6;
+  --dark: #f3f6fb;
+  --secondary: #{$gold};
+  --tertiary: #{$red};
+  --highlight: rgba(255, 194, 75, 0.1);
+  --textHighlight: rgba(230, 57, 70, 0.35);
+  --headerFont: "Rajdhani", "Schibsted Grotesk", sans-serif;
+  --titleFont: "Rajdhani", sans-serif;
+}
+
+// Gold corner brackets drawn with background gradients, over a dark glass panel.
+@mixin hud-panel {
+  border: 1px solid rgba(94, 231, 255, 0.18);
+  border-radius: 4px;
+  background-color: rgba(10, 16, 28, 0.78);
+  background-image:
+    linear-gradient($gold, $gold), linear-gradient($gold, $gold), linear-gradient($gold, $gold),
+    linear-gradient($gold, $gold), linear-gradient($gold, $gold), linear-gradient($gold, $gold),
+    linear-gradient($gold, $gold), linear-gradient($gold, $gold);
+  background-repeat: no-repeat;
+  background-size:
+    16px 2px,
+    2px 16px,
+    16px 2px,
+    2px 16px,
+    16px 2px,
+    2px 16px,
+    16px 2px,
+    2px 16px;
+  background-position:
+    top left,
+    top left,
+    top right,
+    top right,
+    bottom left,
+    bottom left,
+    bottom right,
+    bottom right;
+}
+
+@mixin hud-label {
+  font-family: $monoFont;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+@keyframes hud-reactor {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 3px var(--light),
+      0 0 0 5px $cyan,
+      0 0 14px 4px rgba(94, 231, 255, 0.35),
+      0 0 40px 10px rgba(94, 231, 255, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px var(--light),
+      0 0 0 5px $cyan,
+      0 0 22px 8px rgba(94, 231, 255, 0.6),
+      0 0 60px 18px rgba(94, 231, 255, 0.2);
+  }
+}
+
+@keyframes hud-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hud-scan {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(100vh + 140px));
+  }
+}
+
+@keyframes hud-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes hud-boot-screen {
+  0%,
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes hud-boot-sweep {
+  from {
+    transform: translateY(-10vh);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+@keyframes hud-boot-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+#{$hud} {
+  // Visor: red glow from above, faint cyan grid.
+  body {
+    background-color: var(--light);
+    background-image:
+      radial-gradient(ellipse at 50% -10%, rgba(230, 57, 70, 0.16), transparent 55%),
+      radial-gradient(ellipse at 100% 100%, rgba(94, 231, 255, 0.07), transparent 50%),
+      linear-gradient(rgba(94, 231, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(94, 231, 255, 0.035) 1px, transparent 1px);
+    background-size:
+      auto,
+      auto,
+      44px 44px,
+      44px 44px;
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(230, 57, 70, 0.45);
+    color: #fff;
+  }
+
+  :is(h1, h2, h3, h4) {
+    letter-spacing: 0.02em;
+  }
+
+  article h2 {
+    padding-left: 0.7rem;
+    border-left: 3px solid $red;
+  }
+
+  // Labels read like HUD readouts.
+  :is(
+      .explorer h2,
+      .toc h3,
+      .recent-notes > h3,
+      .explore-topics h3,
+      .backlinks > h3,
+      .eyebrow,
+      .content-meta,
+      .breadcrumb-container
+    ) {
+    @include hud-label;
+  }
+
+  .page-title a {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    @media all and ($mobile) {
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  // Recolour the green "m" mark to red and gold.
+  .page-title-mark {
+    filter: hue-rotate(-95deg) saturate(1.8) brightness(1.15);
+  }
+
+  // Theme toggle is meaningless while the HUD palette is in charge.
+  .darkmode {
+    display: none;
+  }
+
+  .hud-toggle svg {
+    stroke: $cyan;
+    filter: drop-shadow(0 0 4px $cyan);
+  }
+
+  // Home hero: red-to-gold name and a pulsing reactor ring round the avatar.
+  .hero {
+    h1 {
+      background: linear-gradient(100deg, $red, $gold);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-avatar {
+      animation: hud-reactor 3.2s ease-in-out infinite;
+    }
+  }
+
+  // `article.` outranks custom.scss's dark-mode card background, which loads
+  // after this file.
+  .topic-grid article.topic-card,
+  .book-feature,
+  .newsletter {
+    @include hud-panel;
+  }
+
+  .topic-grid article.topic-card {
+    &:hover {
+      border-color: rgba(255, 194, 75, 0.6);
+      box-shadow:
+        0 0 0 1px rgba(255, 194, 75, 0.25),
+        0 0 26px rgba(255, 194, 75, 0.16);
+    }
+
+    .topic-icon {
+      background: rgba(94, 231, 255, 0.08);
+      border: 1px solid rgba(94, 231, 255, 0.3);
+      stroke: $cyan;
+    }
+  }
+
+  // Buttons: red primary, gold outline secondary.
+  :is(.book-actions a.btn, .newsletter-button) {
+    border-radius: 3px;
+    border: 1px solid $red;
+    background: linear-gradient(135deg, $red, #a4161a);
+    color: #fff;
+    font-family: var(--headerFont);
+    font-size: 0.95rem;
+    font-weight: $boldWeight;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    box-shadow: 0 0 14px rgba(230, 57, 70, 0.35);
+
+    &:hover {
+      background: linear-gradient(135deg, #ff4d5a, $red);
+      color: #fff;
+    }
+  }
+
+  .book-actions a.btn-ghost {
+    border-color: $gold;
+    background: transparent;
+    color: $gold;
+    box-shadow: none;
+
+    &:hover {
+      background: rgba(255, 194, 75, 0.12);
+      color: $gold;
+    }
+  }
+
+  // Tags as bracketed readouts rather than soft pills.
+  :is(a.tag-link, .explore-topics a.internal) {
+    border: 1px solid rgba(255, 194, 75, 0.35);
+    border-radius: 3px;
+    background: rgba(255, 194, 75, 0.06);
+    font-family: $monoFont;
+    font-weight: 400;
+  }
+
+  blockquote {
+    border-left-color: $cyan;
+    background: rgba(94, 231, 255, 0.05);
+  }
+
+  pre {
+    border-color: rgba(94, 231, 255, 0.2);
+  }
+
+  ul.toc-content.overflow > li > a.in-view {
+    color: $gold;
+  }
+
+  .explorer-content ul li > a.active {
+    color: $gold;
+  }
+
+  .scroll-progress {
+    height: 3px;
+    background: linear-gradient(90deg, $red, $gold);
+    box-shadow: 0 0 10px rgba(255, 194, 75, 0.6);
+  }
+
+  .back-to-top {
+    border-color: rgba(94, 231, 255, 0.5);
+    background: rgba(7, 10, 18, 0.9);
+    color: $cyan;
+    box-shadow: 0 0 16px rgba(94, 231, 255, 0.3);
+  }
+
+  // Reactor portrait: rings turning in opposite directions round the avatar.
+  // On phones the avatar sits at the screen edge, so make room for the rings.
+  .hero-portrait {
+    @media all and ($mobile) {
+      margin: 16px 0 6px 20px;
+    }
+  }
+
+  .hero-rings {
+    display: block;
+    position: absolute;
+    inset: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    overflow: visible;
+    pointer-events: none;
+
+    circle {
+      fill: none;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .ring-ticks {
+      stroke: rgba(94, 231, 255, 0.55);
+      stroke-width: 1.5;
+      stroke-dasharray: 1 5.1;
+      animation: hud-spin 28s linear infinite;
+    }
+
+    .ring-arcs {
+      stroke: $gold;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-dasharray: 70 22 20 22;
+      filter: drop-shadow(0 0 3px rgba(255, 194, 75, 0.7));
+      animation: hud-spin 12s linear infinite reverse;
+    }
+
+    .ring-inner {
+      stroke: rgba(230, 57, 70, 0.75);
+      stroke-width: 1;
+      stroke-dasharray: 3 4;
+      animation: hud-spin 18s linear infinite;
+    }
+  }
+
+  // Numbered sections, like a readout: 01, 02, 03…
+  article {
+    counter-reset: hud-section;
+  }
+
+  article > h2::before {
+    counter-increment: hud-section;
+    content: counter(hud-section, decimal-leading-zero);
+    margin-right: 0.6rem;
+    font-family: $monoFont;
+    font-size: 0.75em;
+    letter-spacing: 0.1em;
+    color: $gold;
+    vertical-align: 0.1em;
+  }
+
+  // Language tag on code blocks; it steps aside for the copy button on hover.
+  pre[data-language]::before {
+    content: "[ " attr(data-language) " ]";
+    position: absolute;
+    top: 0.45rem;
+    right: 0.8rem;
+    font-family: $monoFont;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(94, 231, 255, 0.7);
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+  }
+
+  pre:hover::before {
+    opacity: 0;
+  }
+
+  // Holographic sweep across a card on hover.
+  .topic-grid article.topic-card {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        transparent 35%,
+        rgba(94, 231, 255, 0.13) 50%,
+        transparent 65%
+      );
+      transform: translateX(-120%);
+      transition: transform 0.7s ease;
+      pointer-events: none;
+    }
+
+    &:hover::after {
+      transform: translateX(120%);
+    }
+  }
+
+  // Screen overlay: status strip, frame corners and a slow scan line.
+  .hud-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    pointer-events: none;
+
+    @media all and ($mobile) {
+      display: none;
+    }
+  }
+
+  .hud-status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 1.5rem;
+    @include hud-label;
+    font-size: 0.72rem;
+    color: rgba(94, 231, 255, 0.8);
+    background: linear-gradient(rgba(7, 10, 18, 0.9), rgba(7, 10, 18, 0));
+  }
+
+  .hud-status-dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    background: $cyan;
+    box-shadow: 0 0 8px $cyan;
+    animation: hud-blink 2s ease-in-out infinite;
+  }
+
+  .hud-status-sep {
+    margin: 0 0.6rem;
+    color: $gold;
+  }
+
+  .hud-corner {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border: 2px solid rgba(255, 194, 75, 0.5);
+  }
+
+  .hud-corner-tl {
+    top: 34px;
+    left: 12px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .hud-corner-tr {
+    top: 34px;
+    right: 12px;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .hud-corner-bl {
+    bottom: 12px;
+    left: 12px;
+    border-right: none;
+    border-top: none;
+  }
+
+  .hud-corner-br {
+    bottom: 12px;
+    right: 12px;
+    border-left: none;
+    border-top: none;
+  }
+
+  .hud-scan {
+    position: absolute;
+    top: -140px;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background: linear-gradient(transparent, rgba(94, 231, 255, 0.045), transparent);
+    animation: hud-scan 9s linear infinite;
+  }
+
+  // Power-up screen, shown briefly when HUD mode is switched on.
+  &[data-hud-boot] .hud-boot {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+    background: rgba(7, 10, 18, 0.94);
+    animation: hud-boot-screen 1.4s ease forwards;
+    pointer-events: none;
+  }
+
+  .hud-boot-sweep {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 2px;
+    background: $cyan;
+    box-shadow: 0 0 18px 4px rgba(94, 231, 255, 0.6);
+    animation: hud-boot-sweep 0.8s ease-in forwards;
+  }
+
+  .hud-boot-text {
+    @include hud-label;
+    margin: 0;
+    font-size: 1.1rem;
+    text-align: center;
+    color: $gold;
+    animation: hud-boot-reveal 0.3s ease 0.15s both;
+
+    span {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      color: $cyan;
+      animation: hud-boot-reveal 0.3s ease 0.6s both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .hero-avatar {
+      animation: none;
+    }
+
+    .hero-rings circle,
+    .hud-scan,
+    .hud-status-dot {
+      animation: none;
+    }
+
+    .topic-grid article.topic-card::after {
+      display: none;
+    }
+  }
+}

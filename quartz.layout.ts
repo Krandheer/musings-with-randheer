@@ -75,6 +75,7 @@ const leftSidebar = [
         grow: true,
       },
       { Component: Component.Darkmode() },
+      { Component: Component.HudToggle() },
       { Component: Component.ReaderMode() },
     ],
   }),

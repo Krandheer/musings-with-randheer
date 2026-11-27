@@ -6,7 +6,14 @@ lastmod: 2026-01-18
 ---
 
 <section class="hero">
-  <img class="hero-avatar" src="/static/avatar.webp" alt="Randheer" width="112" height="112" />
+  <span class="hero-portrait">
+    <img class="hero-avatar" src="/static/avatar.webp" alt="Randheer" width="112" height="112" />
+    <svg class="hero-rings" viewBox="0 0 160 160" aria-hidden="true">
+      <circle class="ring-ticks" cx="80" cy="80" r="78" />
+      <circle class="ring-arcs" cx="80" cy="80" r="72" />
+      <circle class="ring-inner" cx="80" cy="80" r="67" />
+    </svg>
+  </span>
   <div>
   <p class="eyebrow">Digital garden · Bengaluru</p>
   <h1>Hi, I'm Randheer</h1>

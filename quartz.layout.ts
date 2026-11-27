@@ -45,7 +45,6 @@ export const sharedPageComponents: SharedLayout = {
       Email: "mailto:gautam.randheer.iitd@gmail.com",
       LinkedIn: "https://linkedin.com/in/randheer-kumar-gautam-804908120/",
       RSS: "https://musings.randheer.in/index.xml",
-      "Digital Garden": "https://github.com/Krandheer/musings-with-randheer",
     },
   }),
 }

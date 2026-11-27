@@ -3,6 +3,7 @@ title: Setting up ESLint + Prettier + Husky + lint-staged in a TypeScript repo
 tags:
   - typescript
   - tooling
+date: 2026-05-04
 ---
 
 A complete, repeatable recipe for adding **automated code quality** to a Node/TypeScript project. By the end, every commit will be auto-formatted and lint-checked before it can land in your repo.

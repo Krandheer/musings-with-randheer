@@ -2,6 +2,7 @@
 title: Golang Nuances
 tags:
   - Golang
+date: 2024-11-01
 ---
 
 ### Query params

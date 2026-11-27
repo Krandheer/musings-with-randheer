@@ -3,9 +3,10 @@
 
 // ---------------------------------------------------------------------------
 // Sidebar scroll behavior
-// On desktop each fixed sidebar fits the viewport. The left sidebar keeps
-// title/search pinned and scrolls only the Explorer; the right sidebar
-// (Graph, TOC, Recently Growing, Backlinks) scrolls as one column.
+// Quartz sizes the left sidebar so the Explorer scrolls on its own. On the
+// right, Quartz would squeeze TOC and Backlinks into small scroll boxes of
+// their own; instead the whole column (Graph, TOC, Recently Growing,
+// Backlinks) scrolls as one.
 // ---------------------------------------------------------------------------
 @mixin sidebar-scroll {
   overflow-y: auto;
@@ -28,50 +29,56 @@
   }
 }
 
-@media all and (min-width: #{$fullPageWidth + 1px}) {
+@media all and not ($mobile) {
   // Keep the site title to two lines in the side panel.
   .sidebar.left > .page-title {
     font-size: 1.45rem;
     line-height: 1.2;
   }
 
-  // Sidebars are position: fixed, so cap them at the viewport height or
-  // anything past the fold (e.g. Backlinks) becomes unreachable.
-  .page > #quartz-body > .sidebar {
-    max-height: calc(100vh - #{$topSpacing});
-    padding-bottom: 2rem;
+  .explorer-content {
+    padding-right: 0.25rem;
+    @include sidebar-scroll;
+  }
+}
+
+@media all and ($desktop) {
+  .page > #quartz-body > .sidebar.right {
+    padding-right: 1rem;
+    @include sidebar-scroll;
 
     & > * {
       flex-shrink: 0;
     }
-  }
 
-  // Left: title, search and theme toggle stay put; Explorer fills the
-  // remaining height and scrolls on its own.
-  .page > #quartz-body > .sidebar.left {
-    & > .explorer {
-      flex-shrink: 1;
-      min-height: 0;
-      display: flex;
-      flex-direction: column;
+    // Let these lists take their natural height; the column scrolls instead.
+    .toc,
+    .backlinks {
+      overflow: visible;
     }
 
-    #explorer-content {
-      flex: 1 1 auto;
-      min-height: 0;
-      padding-right: 0.25rem;
-      @include sidebar-scroll;
+    ul.toc-content.overflow,
+    .backlinks > ul.overflow {
+      max-height: none;
+      overflow: visible;
+
+      &::after {
+        display: none;
+      }
     }
   }
+}
 
-  // Right: one scroll for the whole column instead of a scroll box per
-  // component.
-  .page > #quartz-body > .sidebar.right {
-    // Base styles set wrap; with a capped height that would push overflow
-    // into a hidden second column instead of scrolling.
-    flex-wrap: nowrap;
-    padding-right: 0.5rem;
-    @include sidebar-scroll;
+// The header only holds the (fixed-position) skip link, so its default
+// margins would leave an empty band above every page.
+.page-header > header:has(> .skip-link:only-child) {
+  margin: 0;
+}
+
+@media all and ($mobile) {
+  .sidebar.left > .page-title {
+    font-size: 1.25rem;
+    line-height: 1.2;
   }
 }
 
@@ -79,108 +86,6 @@
 article :is(h1, h2, h3, h4, h5, h6)[id] {
   scroll-margin-top: 1.5rem;
 }
-
-// ---------------------------------------------------------------------------
-// Mobile / tablet layout
-// Goal: keep brand + theme on a compact top row, give Search its own full
-// width row so it feels like a proper input, then article content, then
-// Explorer (browse all notes), then the right sidebar (Graph, Recent,
-// Backlinks). The left sidebar is flattened with `display: contents` so
-// its children can be placed independently in the grid.
-// ---------------------------------------------------------------------------
-@media all and (max-width: #{$fullPageWidth}) {
-  .page > #quartz-body {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas:
-      "title    search   theme"
-      "main     main     main"
-      "explore  explore  explore"
-      "rightbar rightbar rightbar";
-    column-gap: 0.75rem;
-    row-gap: 1.25rem;
-    align-items: center;
-    padding-top: 1.75rem;
-    box-sizing: border-box;
-  }
-
-  .page > #quartz-body > .sidebar.left {
-    display: contents;
-  }
-
-  .page > #quartz-body > .sidebar.left > .page-title {
-    grid-area: title;
-    margin: 0;
-    font-size: 1.85rem;
-    line-height: 2.25rem;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .page > #quartz-body > .sidebar.left > .spacer.mobile-only {
-    display: none;
-  }
-
-  .page > #quartz-body > .sidebar.left > .search {
-    grid-area: search;
-    flex-grow: 0;
-    width: 100%;
-    min-width: 0;
-    max-width: 18rem;
-    justify-self: end;
-  }
-
-  .page > #quartz-body > .sidebar.left > .darkmode {
-    grid-area: theme;
-    justify-self: end;
-  }
-
-  .page > #quartz-body > .center {
-    grid-area: main;
-    min-width: 0;
-  }
-
-  .page > #quartz-body > .sidebar.left > .explorer {
-    grid-area: explore;
-    width: 100%;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--lightgray);
-  }
-
-  .page > #quartz-body > .sidebar.right {
-    grid-area: rightbar;
-  }
-
-  #explorer-content {
-    max-height: 50vh;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-  }
-}
-
-// Narrow phones: title is long, so let search drop onto its own row to keep
-// the top bar from getting too cramped. Still capped so it doesn't span the
-// full screen width.
-@media all and (max-width: 520px) {
-  .page > #quartz-body {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "title    theme"
-      "search   search"
-      "main     main"
-      "explore  explore"
-      "rightbar rightbar";
-  }
-
-  .page > #quartz-body > .sidebar.left > .search {
-    max-width: 14rem;
-    justify-self: start;
-  }
-}
-
 
 // ---------------------------------------------------------------------------
 // Home page
@@ -216,6 +121,26 @@ body[data-slug="index"] .article-title {
     max-width: 56ch;
     color: var(--darkgray);
     margin: 0;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 1rem 0 0;
+    font-weight: $semiBoldWeight;
+
+    a,
+    a.internal {
+      color: var(--secondary);
+      background: transparent;
+      border-left: none;
+      padding: 0;
+    }
+
+    .external-icon {
+      display: none;
+    }
   }
 }
 
@@ -382,7 +307,7 @@ body[data-slug="index"] .article-title {
   }
 }
 
-@media all and (max-width: $mobileBreakpoint) {
+@media all and ($mobile) {
   .book-feature {
     flex-direction: column;
     align-items: flex-start;
@@ -394,16 +319,6 @@ body[data-slug="index"] .article-title {
   aspect-ratio: auto;
   height: 85vh;
   border: 1px solid var(--lightgray);
-}
-
-.connect-section {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--lightgray);
-
-  h2 {
-    margin-top: 0;
-  }
 }
 
 // ---------------------------------------------------------------------------

@@ -1,3 +1,9 @@
+---
+title: "Redis"
+date: 2025-08-13
+aliases:
+  - Redis
+---
 Redis:
 In memory, key-value based database.  
 Can be used as cache, distributed lock, pub-sub, message-queue, and key-value in memory storage.

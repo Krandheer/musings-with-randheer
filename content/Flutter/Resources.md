@@ -1,6 +1,8 @@
 ---
+title: "Flutter Resources"
 tags:
   - "#flutter"
+date: 2024-10-30
 ---
 ### For flutter WebView:  
 > [1.fluter webview](https://medium.com/@MarvelApps_/everything-about-webview-in-flutter-ab56a2315f0f)  

@@ -2,6 +2,7 @@
 title: Reflections on Life, Growth, and Wisdom
 description: Read my book free online or download the PDF — and support the work on Gumroad or Amazon if it helps you.
 date: 2024-01-15
+socialImage: https://musings.randheer.in/book/cover.png
 ---
 
 <section class="book-feature book-feature--page">

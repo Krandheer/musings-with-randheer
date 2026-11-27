@@ -1,8 +1,10 @@
 ---
+title: "Django Internals"
 tags:
   - "#django"
   - sql
   - form-validation
+date: 2024-10-13
 ---
 
 ### Django queries in sql formats

@@ -1,10 +1,13 @@
 ---
-title: Deep-dive in Authentication using firebase and understanding JWT working
+title: "Deep Dive: Firebase Authentication and How JWTs Work"
 tags:
   - Golang
   - Authentication
   - JWT
   - Firebase
+date: 2025-08-15
+aliases:
+  - Deep-dive-in-Authentication-using-firebase-and-understanding-JWT-working
 ---
 > This isn’t just a tutorial — it’s a **full education** in authentication, JWT, Firebase, and integrating it all in a Go + Flutter app.
 

@@ -2,6 +2,7 @@
 title: Django Resources
 tags:
   - "#django"
+date: 2024-10-28
 ---
 
 If you are working with Django rest framework then these resources could be useful:  

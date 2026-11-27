@@ -1,6 +1,8 @@
 ---
+title: "Flutter Learnings"
 tags:
   - flutter
+date: 2024-11-18
 ---
 When you are in initState function of StateFul widget then we cautious of not doing anything that may be blocking runtime.  
 initState is used to initialise things and it should be let run in non-blocking way otherwise it will cause error.  

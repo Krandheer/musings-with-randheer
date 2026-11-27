@@ -1,46 +1,87 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { QuartzPluginData } from "./quartz/plugins/vfile"
+
+// Folder index pages (and the home page) are navigation, not notes, so keep
+// them out of "recent notes" style lists.
+const isNote = (f: QuartzPluginData) => !f.slug?.endsWith("index")
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [Component.SkipLink()],
-  afterBody: [Component.BackToTop()],
+  afterBody: [
+    Component.ConditionalRender({
+      component: Component.RecentNotes({
+        title: "🌱 Latest notes",
+        limit: 6,
+        showTags: true,
+        filter: isNote,
+      }),
+      condition: (page) => page.fileData.slug === "index",
+    }),
+    // Giscus comments, stored as GitHub Discussions on the garden's repo.
+    // Only on notes: not the home page, folder pages, or tag pages.
+    Component.ConditionalRender({
+      component: Component.Comments({
+        provider: "giscus",
+        options: {
+          repo: "Krandheer/musings-with-randheer",
+          repoId: "R_kgDOMqdqmA",
+          category: "Announcements",
+          categoryId: "DIC_kwDOMqdqmM4DMHhA",
+          mapping: "pathname",
+          reactionsEnabled: true,
+          inputPosition: "top",
+        },
+      }),
+      condition: (page) => isNote(page.fileData) && !page.fileData.slug?.startsWith("tags/"),
+    }),
+    Component.BackToTop(),
+  ],
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/Krandheer",
       Email: "mailto:gautam.randheer.iitd@gmail.com",
       LinkedIn: "https://linkedin.com/in/randheer-kumar-gautam-804908120/",
+      RSS: "https://musings.randheer.in/index.xml",
       "Digital Garden": "https://github.com/Krandheer/musings-with-randheer",
     },
   }),
 }
 
+const leftSidebar = [
+  Component.PageTitle(),
+  Component.MobileOnly(Component.Spacer()),
+  Component.Flex({
+    components: [
+      {
+        Component: Component.Search(),
+        grow: true,
+      },
+      { Component: Component.Darkmode() },
+      { Component: Component.ReaderMode() },
+    ],
+  }),
+  Component.Explorer({
+    folderClickBehavior: "collapse",
+    folderDefaultState: "collapsed",
+    useSavedState: true,
+  }),
+]
+
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
-    Component.Breadcrumbs(),
+    Component.ConditionalRender({
+      component: Component.Breadcrumbs(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.TagList(),
   ],
-  left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Search({ enablePreview: true }),
-    Component.Darkmode(),
-    Component.Explorer({
-      folderClickBehavior: "collapse",
-      folderDefaultState: "collapsed",
-      useSavedState: true,
-      sortFn: (a, b) => {
-        if ((!a.file && !b.file) || (a.file && b.file)) {
-          return a.displayName.localeCompare(b.displayName)
-        }
-        return a.file ? 1 : -1
-      }
-    }),
-  ],
+  left: leftSidebar,
   right: [
     Component.Graph({
       localGraph: {
@@ -70,13 +111,18 @@ export const defaultContentPageLayout: PageLayout = {
         showTags: true,
         removeTags: [],
         focusOnHover: true,
-      }
+      },
     }),
     Component.DesktopOnly(Component.TableOfContents()),
-    Component.RecentNotes({
-      title: "🌱 Recently Growing",
-      limit: 5,
-      showTags: true,
+    // The home page already lists latest notes in its body.
+    Component.ConditionalRender({
+      component: Component.RecentNotes({
+        title: "🌱 Recently Growing",
+        limit: 5,
+        showTags: true,
+        filter: isNote,
+      }),
+      condition: (page) => page.fileData.slug !== "index",
     }),
     Component.Backlinks(),
   ],
@@ -85,16 +131,6 @@ export const defaultContentPageLayout: PageLayout = {
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
-  left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Search({ enablePreview: true }),
-    Component.Darkmode(),
-    Component.Explorer({
-      folderClickBehavior: "collapse",
-      folderDefaultState: "collapsed",
-      useSavedState: true,
-    }),
-  ],
+  left: leftSidebar,
   right: [],
 }

@@ -1,6 +1,9 @@
 ---
 title: "Now"
 description: "What I'm currently learning and working on"
+date: 2025-08-14
+aliases:
+  - learnings
 ---
 
 # What I'm Up To Now

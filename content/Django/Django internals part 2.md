@@ -1,6 +1,8 @@
 ---
+title: "Django Internals, Part 2"
 tags:
   - "#django"
+date: 2024-10-17
 ---
 ### Content type
 

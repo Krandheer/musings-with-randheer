@@ -9,6 +9,7 @@ lastmod: 2026-01-18
   <p class="eyebrow">Digital garden · Bengaluru</p>
   <h1>Hi, I'm Randheer 🪴</h1>
   <p class="lede">A software engineer's living notes on backend systems, Django, Go, Flutter, Docker, and the occasional book.</p>
+  <p class="hero-links"><a href="./now">What I'm up to now →</a><a href="https://musings.randheer.in/index.xml">Follow via RSS</a></p>
 </section>
 
 <section class="topic-grid" aria-label="Browse by topic">
@@ -20,7 +21,17 @@ lastmod: 2026-01-18
 
 <article class="topic-card">
   <h3><a href="./Golang">Go</a></h3>
-  <p>Idioms, nuances, and resources.</p>
+  <p>Idioms, nuances, and system design in Go.</p>
+</article>
+
+<article class="topic-card">
+  <h3><a href="./backend">Backend & Infra</a></h3>
+  <p>Docker, Redis, and auth with JWTs.</p>
+</article>
+
+<article class="topic-card">
+  <h3><a href="./typescript">JavaScript & TypeScript</a></h3>
+  <p>Async patterns and project tooling.</p>
 </article>
 
 <article class="topic-card">
@@ -29,18 +40,8 @@ lastmod: 2026-01-18
 </article>
 
 <article class="topic-card">
-  <h3><a href="./docker-crash-course">Docker</a></h3>
-  <p>A crash course from first principles.</p>
-</article>
-
-<article class="topic-card">
-  <h3><a href="./Redis">Redis</a></h3>
-  <p>In-memory data structures.</p>
-</article>
-
-<article class="topic-card">
-  <h3><a href="./Deep-dive-in-Authentication-using-firebase-and-understanding-JWT-working">Auth deep-dive</a></h3>
-  <p>Firebase auth and JWT internals.</p>
+  <h3><a href="./Python">Python</a></h3>
+  <p>Small gotchas worth remembering.</p>
 </article>
 
 </section>
@@ -53,13 +54,4 @@ lastmod: 2026-01-18
     <p>Stoicism, habits, investing, and mental models — 18 chapters distilled from years of personal newsletters.</p>
     <p class="book-actions"><a class="btn" href="./book/reflections-on-life-growth-and-wisdom">Read online</a><a class="btn btn-ghost" href="./book/reflections-on-life-growth-and-wisdom.pdf">Download PDF</a></p>
   </div>
-</section>
-
-<section class="connect-section">
-  <h2>Connect</h2>
-  <ul>
-    <li>GitHub: <a href="https://github.com/Krandheer">Krandheer</a></li>
-    <li>LinkedIn: <a href="https://www.linkedin.com/in/randheer-kumar-gautam-804908120/">Connect on LinkedIn</a></li>
-    <li>Email: <a href="mailto:gautam.randheer.iitd@gmail.com">Contact me</a></li>
-  </ul>
 </section>

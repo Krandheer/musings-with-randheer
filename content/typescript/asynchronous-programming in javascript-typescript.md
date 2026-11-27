@@ -1,3 +1,9 @@
+---
+title: "Asynchronous Programming in JavaScript & TypeScript"
+date: 2026-05-06
+aliases:
+  - asynchronous-programming-in-javascript-typescript
+---
 #async-await
 Promise starts running as soon as it created, await is not needed for starting the promise, await resolves the promises.
 

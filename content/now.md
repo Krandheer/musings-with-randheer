@@ -11,23 +11,20 @@ aliases:
 *Last updated: January 2024*
 
 ## 🎯 Current Focus
-- [ ] Deep-diving into Django performance optimization
-- [ ] Building a microservices architecture with Go
-- [ ] Learning Kubernetes deployment patterns
+- [ ] Deep-diving into operating system.
+- [ ] Exploring agentic engineering.
+- [ ] Doing recreational programming in c sometimes just to explore how things
+  work internally.
+
 
 ## 📚 Currently Reading
-- [[System Design Interview Book]]
-- [[High Performance Django]]
+- Operating System - Three easy pieces
 - [[Microservices Patterns]]
 
 ## 🛠️ Active Projects
-- [[Kubernetes Learning Lab]] - Hands-on cluster setup
-- [[Docker Optimization Guide]] - Performance tips collection
+- 
 
 ## 🤔 Questions I'm Exploring
-- How to implement proper caching strategies?
-- What's the best approach to service mesh?
-- How to balance consistency vs availability?
 
 ---
 *Inspired by Derek Sivers' [now page movement](https://nownownow.com/)*

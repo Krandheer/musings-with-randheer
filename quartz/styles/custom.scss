@@ -1,6 +1,6 @@
 @use "./base.scss";
 @use "./variables.scss" as *;
-// Experimental opt-in theme; see the file header to remove it.
+// HUD mode, the default look; see the file header for how it works.
 @use "./hud.scss";
 
 // ---------------------------------------------------------------------------

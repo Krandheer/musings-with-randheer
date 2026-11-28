@@ -1,5 +1,5 @@
 // Runs before the page renders so a saved HUD choice doesn't flash the
-// default look first.
+// wrong look first. HUD mode is the default; the classic design is opt-in.
 const hudStorageKey = "hud"
 const hudBootMs = 1400
 const hudShutdownMs = 550
@@ -7,10 +7,22 @@ const hudGlyphs = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&/<>"
 
 const readHudPref = (): boolean => {
   try {
-    return localStorage.getItem(hudStorageKey) === "on"
+    return localStorage.getItem(hudStorageKey) !== "off"
   } catch {
-    return false
+    return true
   }
+}
+
+// The visitor's own light/dark choice, for when they switch to the classic design.
+const savedLightDarkTheme = (): "light" | "dark" => {
+  let stored: string | null = null
+  try {
+    stored = localStorage.getItem("theme")
+  } catch {
+    // Fall through to the system preference.
+  }
+  if (stored === "light" || stored === "dark") return stored
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
 }
 
 const saveHudPref = (on: boolean) => {
@@ -24,11 +36,26 @@ const saveHudPref = (on: boolean) => {
 const isHudOn = () => document.documentElement.getAttribute("data-hud") === "on"
 const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-const applyHud = (on: boolean) => {
+// HUD is a dark visor, so it runs on Quartz's dark theme underneath (code
+// highlighting, comments); the classic design gets the visitor's own theme
+// back. Only the attribute changes, never the visitor's saved theme.
+const applyHud = (on: boolean, announce = false) => {
+  const root = document.documentElement
   if (on) {
-    document.documentElement.setAttribute("data-hud", "on")
+    root.setAttribute("data-hud", "on")
   } else {
-    document.documentElement.removeAttribute("data-hud")
+    root.removeAttribute("data-hud")
+  }
+  const theme = on ? "dark" : savedLightDarkTheme()
+  if (root.getAttribute("saved-theme") !== theme) {
+    root.setAttribute("saved-theme", theme)
+    if (announce) {
+      document.dispatchEvent(new CustomEvent("themechange", { detail: { theme } }))
+    }
+  }
+  for (const button of document.getElementsByClassName("hud-toggle")) {
+    button.setAttribute("aria-pressed", String(on))
+    button.setAttribute("title", on ? "Switch to the classic design" : "Switch to HUD mode")
   }
 }
 
@@ -84,6 +111,8 @@ const decodeTitles = () => {
 applyHud(readHudPref())
 
 document.addEventListener("nav", () => {
+  // Sync the toggle's pressed state and label with the current mode.
+  applyHud(isHudOn())
   let busy = false
   let stopDecodes = decodeTitles()
 
@@ -92,17 +121,17 @@ document.addEventListener("nav", () => {
     const on = !isHudOn()
     saveHudPref(on)
     if (prefersReducedMotion()) {
-      applyHud(on)
+      applyHud(on, true)
       return
     }
     if (on) {
-      applyHud(true)
+      applyHud(true, true)
       bootHud()
       window.setTimeout(() => (stopDecodes = decodeTitles()), hudBootMs - 400)
     } else {
       busy = true
       shutdownHud(() => {
-        applyHud(false)
+        applyHud(false, true)
         busy = false
       })
     }

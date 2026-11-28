@@ -1,10 +1,10 @@
 @use "./variables.scss" as *;
 
 // ===========================================================================
-// HUD mode (experimental)
+// HUD mode (the default look; the classic design is one click away)
 // An armour-HUD look: hot-rod red and gold on a dark visor, cyan "reactor"
-// glow, corner-bracket panels and display type. Toggled by the HudToggle
-// button, which sets data-hud="on" on <html>. To remove the experiment,
+// glow, corner-bracket panels and display type. The HudToggle button sets or
+// clears data-hud="on" on <html>. To remove the experiment,
 // delete this file, its @use in custom.scss, and the HudToggle component.
 // ===========================================================================
 

@@ -3,7 +3,7 @@ import hudScript from "./scripts/hudToggle.inline"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
 
-// Experimental "HUD mode" theme switch. The button also carries the HUD's
+// "HUD mode" theme switch (on by default; the classic design is opt-in). The button also carries the HUD's
 // screen overlay (status strip, frame corners, scan line, target reticle,
 // boot screen), which stays hidden unless HUD mode is on. The look lives in
 // styles/hud.scss.
@@ -13,8 +13,9 @@ const HudToggle: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
       <button
         type="button"
         class={classNames(displayClass, "hud-toggle")}
-        aria-label="Toggle HUD mode"
-        title="HUD mode"
+        aria-label="HUD mode"
+        aria-pressed="true"
+        title="Switch to the classic design"
       >
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="9" />
